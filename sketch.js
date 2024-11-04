@@ -3,6 +3,7 @@ let tanktop;
 let shirt;
 let sweatshirt;
 let mirrorcenter;
+let notification;
 
 let iswearingtank = false;
 let iswearingshirt = false;
@@ -151,10 +152,17 @@ function draw() {
 	}
 
 
-		if (kb.presses(' ')){
+		if (kb.presses(' ') && iswearingtank === true){
 			stage = 2;
 		}
 
+		if (kb.presses(' ') && iswearingshirt === true){
+			stage = 3;
+		}
+
+		if (kb.presses(' ') && iswearingsweat === true){
+			stage = 4;
+		}
 			break;
 
 
@@ -163,11 +171,11 @@ function draw() {
 
 
 
-		case 2: // walk
+		case 2: // walk + tank
 
 			background('#cfa6f5');
 
-	
+			text("Tanktop", 100, 100);
 
 			mirror.visible = false;
 			phone.visible = false;
@@ -179,8 +187,54 @@ function draw() {
 
 			camera.x = player.x;
 			break;
+
+
+
+
+
+
+		case 3: //walk + shirt
+
+		background('#98e2eb');
+
+		text("Shirt", 100, 100);
+
+		mirror.visible = false;
+		phone.visible = false;
+		tanktop.visible = false;
+		shirt.visible = false;
+		sweatshirt.visible = false;
+		floor.visible = true;
+		player.visible = true;
+
+		camera.x = player.x;
+			break;
+
+
+
+
+
+
+
+		case 4://walk + sweat
+
+		background('#f5abce');
+
+		text("Sweatshirt", 100, 100);
+
+		mirror.visible = false;
+		phone.visible = false;
+		tanktop.visible = false;
+		shirt.visible = false;
+		sweatshirt.visible = false;
+		floor.visible = true;
+		player.visible = true;
+
+		camera.x = player.x;
+
+			break;
 	}
 	
-//if (stage === 2) camera.zoomTo(1);
+
 
 }
