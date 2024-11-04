@@ -8,6 +8,9 @@ let iswearingtank = false;
 let iswearingshirt = false;
 let iswearingsweat = false;
 
+let gui;
+let stage = 0;
+
 function setup() {
 	new Canvas(windowWidth, windowHeight);
 	displayMode('centered');
@@ -43,47 +46,104 @@ function setup() {
 	sweatshirt.drag = 8;
 	sweatshirt.position = createVector(960, 350);
 
+	gui = createGui();
+
 }
 
 function draw() {
-	background('#ecf7ba');
+	
+	switch (stage){
+		case 0: //intro
+
+		background('#a3f7b4');
+		
+		mirror.visible = false;
+		phone.visible = false;
+		tanktop.visible = false;
+		shirt.visible = false;
+		sweatshirt.visible = false;
+
+		text("Walk Yo Dawg", 100, 100);
+		textSize(75);
+
+		if (m)
+
+			break;
+
+
+
+
+
+		case 1: //clothes
+
+		background('#ecf7ba');
+
+		mirror.visible = true;
+		phone.visible = true;
+		tanktop.visible = true;
+		shirt.visible = true;
+		sweatshirt.visible = true;
 
 	if (tanktop.mouse.dragging()){
 		tanktop.moveTowards(
 			mouseX + tanktop.mouse.x,
 			mouseY + tanktop.mouse.y,
 		1);
-	} 
+	} else {
+		tanktop.moveTowards(600, 350, .04);
+	}
 
 	if (shirt.mouse.dragging()){
 		shirt.moveTowards(
 			mouseX + shirt.mouse.x,
 			mouseY + shirt.mouse.y,
 		1);
-	} 
+	} else {
+		shirt.moveTowards(780, 350, .04);
+	}
 
 	if (sweatshirt.mouse.dragging()){
 		sweatshirt.moveTowards(
 			mouseX + sweatshirt.mouse.x,
 			mouseY + sweatshirt.mouse.y,
 		1);
-	} 
-//The above code is for dragging clothes and returning them to origin
+	} else {
+		sweatshirt.moveTowards(960, 350, .04);
+	}
+
+	if (dist(tanktop.x, tanktop.y, mirrorcenter.x, mirrorcenter.y) < 50){
+		tanktop.position = mirrorcenter;
+		iswearingtank = true;
+	} else {
+		iswearingtank = false;
+	}
+	
+	if (dist(shirt.x, shirt.y, mirrorcenter.x, mirrorcenter.y) < 50){
+		shirt.position = mirrorcenter;
+		iswearingshirt = true;
+	} else {
+		iswearingshirt = false;
+	}
+	
+	if (dist(sweatshirt.x, sweatshirt.y, mirrorcenter.x, mirrorcenter.y) < 50){
+		sweatshirt.position = mirrorcenter;
+		iswearingsweat = true;
+	} else{
+		iswearingsweat = false;
+	}
+
+			break;
 
 
 
 
 
-//if(iswearingtank == false) {
-//	tanktop.moveTowards(600, 350, .04);
-//}
 
-//if(iswearingshirt == false) {
-//	shirt.moveTowards(780, 350, .04);
-//}
 
-//if(iswearingsweat == false) {
-//	sweatshirt.moveTowards(960, 350, .04);
-//}
+		case 2: // walk
+			break;
+	}
+	
+	
 
 }
