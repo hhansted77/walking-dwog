@@ -11,6 +11,9 @@ let iswearingsweat = false;
 let gui;
 let stage = 0;
 
+let player, floor;
+
+
 function setup() {
 	new Canvas(windowWidth, windowHeight);
 	displayMode('centered');
@@ -48,6 +51,15 @@ function setup() {
 
 	gui = createGui();
 
+	player = new Sprite();
+	player.collider = 'kinematic';
+
+	floor = new Sprite();
+	floor.width = 4000;
+	floor.height = 200;
+	floor.collider = 'static';
+	floor.x = 500;
+	floor.y = 630;
 }
 
 function draw() {
@@ -62,11 +74,15 @@ function draw() {
 		tanktop.visible = false;
 		shirt.visible = false;
 		sweatshirt.visible = false;
+		player.visible = false;
+		floor.visible = false;
 
 		text("Walk Yo Dawg", 100, 100);
 		textSize(75);
 
-		if (m)
+		if (mouse.presses()){
+			stage = 1;
+		}
 
 			break;
 
@@ -83,6 +99,8 @@ function draw() {
 		tanktop.visible = true;
 		shirt.visible = true;
 		sweatshirt.visible = true;
+		floor.visible = false;
+		player.visible = false;
 
 	if (tanktop.mouse.dragging()){
 		tanktop.moveTowards(
@@ -132,6 +150,11 @@ function draw() {
 		iswearingsweat = false;
 	}
 
+
+		if (kb.presses(' ')){
+			stage = 2;
+		}
+
 			break;
 
 
@@ -141,9 +164,23 @@ function draw() {
 
 
 		case 2: // walk
+
+			background('#cfa6f5');
+
+	
+
+			mirror.visible = false;
+			phone.visible = false;
+			tanktop.visible = false;
+			shirt.visible = false;
+			sweatshirt.visible = false;
+			floor.visible = true;
+			player.visible = true;
+
+			camera.x = player.x;
 			break;
 	}
 	
-	
+//if (stage === 2) camera.zoomTo(1);
 
 }
