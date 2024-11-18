@@ -28,7 +28,6 @@ function setup() {
 	world.gravity.y = 7;
 
 	mirror = new Sprite(300, 350, 300, 500, 's');
-	mirror.text = "mirror";
 	mirrorcenter = createVector(300, 350);
 	mirror.image = "assets/Mirror_image.png";
 	mirror.image.scale = 3;
@@ -40,7 +39,6 @@ function setup() {
 	tanktop.width = 150;
 	tanktop.height = 250;
 	tanktop.collider = 'kinematic';
-	tanktop.text = "tanktop";
 	tanktop.drag = 8;
 	tanktop.position = createVector(600, 350);
 	tanktop.image = "assets/tank.png";
@@ -50,7 +48,6 @@ function setup() {
 	shirt.width = 150;
 	shirt.height = 250;
 	shirt.collider = 'kinematic';
-	shirt.text = "shirt";
 	shirt.drag = 8;
 	shirt.position = createVector(780, 350);
 	shirt.image = "assets/shirt.png";
@@ -60,7 +57,6 @@ function setup() {
 	sweatshirt.width = 150;
 	sweatshirt.height = 250;
 	sweatshirt.collider = 'kinematic';
-	sweatshirt.text = "sweatshirt";
 	sweatshirt.drag = 8;
 	sweatshirt.position = createVector(960, 350);
 	sweatshirt.image = "assets/sweat.png";
