@@ -18,7 +18,7 @@ let player, floor;
 
 
 function preload() {
-	//loadImage("assets/Mirror_image.png");
+	
 }
 
 function setup() {
@@ -213,7 +213,7 @@ function draw() {
 			floor.visible = true;
 			player.visible = true;
 			blockend.visible = true;
-			//iswearingtank = false;
+		
 
 		
 
@@ -263,7 +263,7 @@ function draw() {
 		}
 
 		if (player.collides(blockend)){
-			stage = 5;
+			stage = 9;
 		}
 
 		camera.x = player.x;
@@ -298,6 +298,10 @@ function draw() {
 				player.vel.x = 3;
 			} else {
 				player.vel.x = 0;
+			}
+
+			if (player.collides(blockend)){
+				stage = 7;
 			}
 
 		camera.x = player.x;
@@ -364,6 +368,10 @@ function draw() {
 
 
 			case 6://shirt after tank
+			background('#98e2eb');
+
+			text("Shirt", 100, 100);
+			
 				mirror.visible = false;
 				phone.visible = false;
 				tanktop.visible = false;
@@ -420,8 +428,129 @@ function draw() {
 				}
 			
 				if (kb.presses(' ') && iswearingsweat === true){
+					stage = 8;
+				}
+			break;
+
+
+
+
+			//mustang man walk
+			case 8:
+			background('#f5abce');
+			text("Sweatshirt", 100, 100);
+
+			mirror.visible = false;
+			phone.visible = false;
+			tanktop.visible = false;
+			shirt.visible = false;
+			sweatshirt.visible = false;
+			floor.visible = true;
+			player.visible = true;
+
+
+			phone.x = 1000;
+			phone.y = 1000;
+
+			if (kb.pressing('left')){
+				player.vel.x = -3;
+			} else if (kb.pressing('right')){
+				player.vel.x = 3;
+			} else {
+				player.vel.x = 0;
+			}
+
+		camera.x = player.x;
+
+			break;
+
+
+//no shirt, tank sweat
+			case 9:
+				background('#ecf7ba');
+
+				mirror.visible = true;
+				phone.visible = true;
+				tanktop.visible = true;
+				shirt.visible = false;
+				sweatshirt.visible = true;
+				floor.visible = false;
+				player.visible = false;
+				blockend.visible = false;
+
+				if (tanktop.mouse.dragging()){
+					tanktop.moveTowards(
+						mouseX + tanktop.mouse.x,
+						mouseY + tanktop.mouse.y,
+					1);
+				} else {
+					tanktop.moveTowards(600, 350, .04);
+				}
+				if (sweatshirt.mouse.dragging()){
+					sweatshirt.moveTowards(
+						mouseX + sweatshirt.mouse.x,
+						mouseY + sweatshirt.mouse.y,
+					1);
+				} else {
+					sweatshirt.moveTowards(960, 350, .04);
+				}
+
+				if (dist(tanktop.x, tanktop.y, mirrorcenter.x, mirrorcenter.y) < 50){
+					tanktop.position = mirrorcenter;
+					iswearingtank = true;
+			
+				} else {
+					iswearingtank = false;
+				}
+				if (dist(sweatshirt.x, sweatshirt.y, mirrorcenter.x, mirrorcenter.y) < 50){
+					sweatshirt.position = mirrorcenter;
+					iswearingsweat = true;
+				} else{
+					iswearingsweat = false;
+				}
+
+				if (kb.presses(' ') && iswearingtank === true){
+					stage = 10;
+				}
+				if (kb.presses(' ') && iswearingsweat === true){
 					stage = 4;
 				}
+
+
+			break;
+
+///walk with tank then go to stage 8 (tank after shirt)
+			case 10:
+				background('#cfa6f5');
+
+				text("Tanktop", 100, 100);
+	
+				mirror.visible = false;
+				phone.visible = false;
+				tanktop.visible = false;
+				shirt.visible = false;
+				sweatshirt.visible = false;
+				floor.visible = true;
+				player.visible = true;
+				blockend.visible = true;
+			
+	
+			
+	
+				if (kb.pressing('left')){
+					blockend.vel.x = 3;
+				} else if (kb.pressing('right')){
+					blockend.vel.x = -3;
+				} else {
+					blockend.vel.x = 0;
+				}
+	
+				if (player.collides(blockend)){
+					stage = 8;
+				}
+	
+				camera.x = player.x;
+
 			break;
 	}
 	
