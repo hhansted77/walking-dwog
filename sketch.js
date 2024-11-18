@@ -29,8 +29,8 @@ function setup() {
 
 	mirror = new Sprite(300, 350, 300, 500, 's');
 	mirrorcenter = createVector(300, 350);
-	mirror.image = "assets/Mirror_image.png";
-	mirror.image.scale = 3;
+	mirror.image = "assets/mirror.png";
+	mirror.image.scale = .5;
 
 	phone = new Sprite (1260, 350, 300, 500, 'n');
 	phone.text = "phone";
@@ -213,6 +213,7 @@ function draw() {
 			floor.visible = true;
 			player.visible = true;
 			blockend.visible = true;
+			//iswearingtank = false;
 
 		
 
@@ -315,6 +316,7 @@ function draw() {
 		floor.visible = false;
 		player.visible = false;
 		blockend.visible = false;
+		iswearingtank = false;
 //clothes move
 		if (shirt.mouse.dragging()){
 			shirt.moveTowards(
