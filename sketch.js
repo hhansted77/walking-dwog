@@ -29,29 +29,29 @@ function setup() {
 
 	mirror = new Sprite(300, 350, 300, 500, 's');
 	mirrorcenter = createVector(300, 350);
-	mirror.image = "assets/mirror.png";
-	mirror.image.scale = .5;
+	mirror.image = "assets/smallmirror.png";
+	//mirror.image.scale = .5;
 
-	phone = new Sprite (1260, 350, 300, 500, 'n');
-	phone.text = "phone";
+	phone = new Sprite (1270, 350, 300, 500, 'n');
+	phone.image = "assets/smallphone.png";
 
 	tanktop = new Sprite();
 	tanktop.width = 150;
 	tanktop.height = 250;
 	tanktop.collider = 'kinematic';
 	tanktop.drag = 8;
-	tanktop.position = createVector(600, 350);
-	tanktop.image = "assets/tank.png";
-	tanktop.image.scale = .5;
+	tanktop.position = createVector(560, 350);
+	tanktop.image = "assets/smalltank.png";
+	//tanktop.image.scale = .5;
 
 	shirt = new Sprite();
 	shirt.width = 150;
 	shirt.height = 250;
 	shirt.collider = 'kinematic';
 	shirt.drag = 8;
-	shirt.position = createVector(780, 350);
-	shirt.image = "assets/shirt.png";
-	shirt.image.scale = .5;
+	shirt.position = createVector(740, 350);
+	shirt.image = "assets/smallshirt.png";
+	//shirt.image.scale = .5;
 
 	sweatshirt = new Sprite();
 	sweatshirt.width = 150;
@@ -59,8 +59,8 @@ function setup() {
 	sweatshirt.collider = 'kinematic';
 	sweatshirt.drag = 8;
 	sweatshirt.position = createVector(960, 350);
-	sweatshirt.image = "assets/sweat.png";
-	sweatshirt.image.scale = .5;
+	sweatshirt.image = "assets/smallsweat.png";
+	//sweatshirt.image.scale = .5;
 
 	gui = createGui();
 
@@ -133,7 +133,7 @@ function draw() {
 			mouseY + tanktop.mouse.y,
 		1);
 	} else {
-		tanktop.moveTowards(600, 350, .04);
+		tanktop.moveTowards(560, 350, .04);
 	}
 
 	if (shirt.mouse.dragging()){
@@ -142,7 +142,7 @@ function draw() {
 			mouseY + shirt.mouse.y,
 		1);
 	} else {
-		shirt.moveTowards(780, 350, .04);
+		shirt.moveTowards(740, 350, .04);
 	}
 
 	if (sweatshirt.mouse.dragging()){
@@ -328,7 +328,7 @@ function draw() {
 				mouseY + shirt.mouse.y,
 			1);
 		} else {
-			shirt.moveTowards(780, 350, .04);
+			shirt.moveTowards(740, 350, .04);
 		}
 	
 		if (sweatshirt.mouse.dragging()){
@@ -484,7 +484,7 @@ function draw() {
 						mouseY + tanktop.mouse.y,
 					1);
 				} else {
-					tanktop.moveTowards(600, 350, .04);
+					tanktop.moveTowards(560, 350, .04);
 				}
 				if (sweatshirt.mouse.dragging()){
 					sweatshirt.moveTowards(
