@@ -154,6 +154,7 @@ function draw() {
 					1);
 			} else {
 				tanktop.moveTowards(560, 350, .04);
+				iswearingtank = false;
 			}
 
 			if (shirt.mouse.dragging()) {
@@ -163,6 +164,7 @@ function draw() {
 					1);
 			} else {
 				shirt.moveTowards(740, 350, .04);
+				iswearingshirt = false;
 			}
 
 			if (sweatshirt.mouse.dragging()) {
@@ -172,33 +174,28 @@ function draw() {
 					1);
 			} else {
 				sweatshirt.moveTowards(960, 350, .04);
+				iswearingsweat = false;
 			}
 
 
 			//below is the code for snapping to mirror
-			if (dist(tanktop.x, tanktop.y, mirrorcenter.x, mirrorcenter.y) < 50) {
+			if (iswearingtank == false && dist(tanktop.x, tanktop.y, mirrorcenter.x, mirrorcenter.y) < 50) {
 				tanktop.position = mirrorcenter;
 				iswearingtank = true;
 				fwip.play();
-			} else {
-				iswearingtank = false;
 			}
 
-			if (dist(shirt.x, shirt.y, mirrorcenter.x, mirrorcenter.y) < 50) {
+			if (iswearingshirt == false && dist(shirt.x, shirt.y, mirrorcenter.x, mirrorcenter.y) < 50) {
 				shirt.position = mirrorcenter;
 				iswearingshirt = true;
 				rustle.play();
-			} else {
-				iswearingshirt = false;
-			}
+			} 
 
-			if (dist(sweatshirt.x, sweatshirt.y, mirrorcenter.x, mirrorcenter.y) < 50) {
+			if (iswearingsweat == false && dist(sweatshirt.x, sweatshirt.y, mirrorcenter.x, mirrorcenter.y) < 50) {
 				sweatshirt.position = mirrorcenter;
 				iswearingsweat = true;
 				fwoop.play();
-			} else {
-				iswearingsweat = false;
-			}
+			} 
 
 
 			//below is the code where we switch to next scene
@@ -321,7 +318,7 @@ function draw() {
 
 
 		case 4://walk + sweat
-
+			sweatshirt.x = 960;
 			background('#f5abce');
 
 			text("4", 100, 100);
@@ -393,6 +390,7 @@ function draw() {
 					1);
 			} else {
 				shirt.moveTowards(740, 350, .04);
+				iswearingshirt = false;
 			}
 
 			if (sweatshirt.mouse.dragging()) {
@@ -402,25 +400,20 @@ function draw() {
 					1);
 			} else {
 				sweatshirt.moveTowards(960, 350, .04);
-			}
-
-			//clothes 
-			if (dist(shirt.x, shirt.y, mirrorcenter.x, mirrorcenter.y) < 50) {
-				shirt.position = mirrorcenter;
-				iswearingshirt = true;
-				rustle.play();
-			} else {
-				iswearingshirt = false;
-			}
-
-			if (dist(sweatshirt.x, sweatshirt.y, mirrorcenter.x, mirrorcenter.y) < 50) {
-				sweatshirt.position = mirrorcenter;
-				iswearingsweat = true;
-				fwoop.play();
-			} else {
 				iswearingsweat = false;
 			}
 
+			//clothes 
+			if (iswearingshirt == false && dist(shirt.x, shirt.y, mirrorcenter.x, mirrorcenter.y) < 50) {
+				shirt.position = mirrorcenter;
+				iswearingshirt = true;
+				rustle.play();
+			} 
+			if (iswearingsweat == false && dist(sweatshirt.x, sweatshirt.y, mirrorcenter.x, mirrorcenter.y) < 50) {
+				sweatshirt.position = mirrorcenter;
+				iswearingsweat = true;
+				fwoop.play();
+			} 
 			//stage change
 			if (kb.presses(' ') && iswearingshirt === true) {
 				stage = 6;
@@ -503,13 +496,12 @@ function draw() {
 					1);
 			} else {
 				sweatshirt.moveTowards(960, 350, .04);
+				iswearingsweat = false;
 			}
-			if (dist(sweatshirt.x, sweatshirt.y, mirrorcenter.x, mirrorcenter.y) < 50) {
+			if (iswearingsweat == false && dist(sweatshirt.x, sweatshirt.y, mirrorcenter.x, mirrorcenter.y) < 50) {
 				sweatshirt.position = mirrorcenter;
 				iswearingsweat = true;
 				fwoop.play();
-			} else {
-				iswearingsweat = false;
 			}
 
 			if (kb.presses(' ') && iswearingsweat === true) {
@@ -580,7 +572,7 @@ function draw() {
 			carR.visible = false;
 			carL.visible = false;
 			blockend.x = 3050;
-
+			//dragging
 			if (tanktop.mouse.dragging()) {
 				tanktop.moveTowards(
 					mouseX + tanktop.mouse.x,
@@ -588,6 +580,7 @@ function draw() {
 					1);
 			} else {
 				tanktop.moveTowards(560, 350, .04);
+				iswearingtank = false;
 			}
 			if (sweatshirt.mouse.dragging()) {
 				sweatshirt.moveTowards(
@@ -596,24 +589,20 @@ function draw() {
 					1);
 			} else {
 				sweatshirt.moveTowards(960, 350, .04);
+				iswearingsweat = false;
 			}
-
-			if (dist(tanktop.x, tanktop.y, mirrorcenter.x, mirrorcenter.y) < 50) {
+					///dragging & snapping
+			if (iswearingtank == false && dist(tanktop.x, tanktop.y, mirrorcenter.x, mirrorcenter.y) < 50) {
 				tanktop.position = mirrorcenter;
 				iswearingtank = true;
 				fwip.play();
-
-			} else {
-				iswearingtank = false;
 			}
-			if (dist(sweatshirt.x, sweatshirt.y, mirrorcenter.x, mirrorcenter.y) < 50) {
+			if (iswearingsweat == false && dist(sweatshirt.x, sweatshirt.y, mirrorcenter.x, mirrorcenter.y) < 50) {
 				sweatshirt.position = mirrorcenter;
 				iswearingsweat = true;
 				fwoop.play();
-			} else {
-				iswearingsweat = false;
-			}
-
+			} 
+			//wearing to next stage
 			if (kb.presses(' ') && iswearingtank === true) {
 				stage = 10;
 			}
