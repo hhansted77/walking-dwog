@@ -10,7 +10,7 @@ let iswearingtank = false;
 let iswearingshirt = false;
 let iswearingsweat = false;
 
-let gui;
+let fwip, fwoop, rustle;
 let stage = 0;
 
 let player, floor;
@@ -18,7 +18,9 @@ let player, floor;
 
 
 function preload() {
-	
+	//rustle = loadSound("assets/fabric1.mp3");
+	//fwoop = loadSound("asstes/fabric2.mp3");
+	//fwip = loadSound("assets/fabric3.mp3");
 }
 
 function setup() {
@@ -159,7 +161,7 @@ function draw() {
 	if (dist(tanktop.x, tanktop.y, mirrorcenter.x, mirrorcenter.y) < 50){
 		tanktop.position = mirrorcenter;
 		iswearingtank = true;
-
+		//fwip.play();
 	} else {
 		iswearingtank = false;
 	}
@@ -167,6 +169,7 @@ function draw() {
 	if (dist(shirt.x, shirt.y, mirrorcenter.x, mirrorcenter.y) < 50){
 		shirt.position = mirrorcenter;
 		iswearingshirt = true;
+		//rustle.play();
 	} else {
 		iswearingshirt = false;
 	}
@@ -174,6 +177,7 @@ function draw() {
 	if (dist(sweatshirt.x, sweatshirt.y, mirrorcenter.x, mirrorcenter.y) < 50){
 		sweatshirt.position = mirrorcenter;
 		iswearingsweat = true;
+		//fwoop.play();
 	} else{
 		iswearingsweat = false;
 	}
