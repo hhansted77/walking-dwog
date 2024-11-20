@@ -15,12 +15,14 @@ let stage = 0;
 
 let player, floor;
 
+let carR, carL;
+
 
 
 function preload() {
-	//rustle = loadSound("assets/fabric1.mp3");
-	//fwoop = loadSound("asstes/fabric2.mp3");
-	//fwip = loadSound("assets/fabric3.mp3");
+	rustle = loadSound("assets/fabric1.mp3");
+	fwoop = loadSound("assets/fabric2.mp3");
+	fwip = loadSound("assets/fabric3.mp3");
 }
 
 function setup() {
@@ -28,6 +30,20 @@ function setup() {
 	displayMode('centered');
 
 	world.gravity.y = 7;
+
+	carR = new Sprite();
+	carR.width = 200;
+	carR.height = 85;
+	carR.collider = "none";
+	carR.x = 2000
+	carR.y = 550;
+
+	carL = new Sprite();
+	carL.width = 200
+	carL.height = 85;
+	carL.collider = 'none';
+	carL.x = -300;
+	carL.y = 550;
 
 	mirror = new Sprite(300, 350, 300, 500, 's');
 	mirrorcenter = createVector(300, 350);
@@ -64,7 +80,6 @@ function setup() {
 	sweatshirt.image = "assets/smallsweat.png";
 	//sweatshirt.image.scale = .5;
 
-	gui = createGui();
 
 	player = new Sprite();
 	player.collider = 'dynamic';
@@ -83,6 +98,8 @@ function setup() {
 	blockend.collider = "kinematic";
 	blockend.x = 3050;
 	blockend.y = 350;
+
+	
 }
 
 function draw() {
@@ -117,6 +134,7 @@ function draw() {
 		case 1: //clothes
 
 		background('#ecf7ba');
+		text("1", 100, 100);
 
 		mirror.visible = true;
 		phone.visible = true;
@@ -161,7 +179,7 @@ function draw() {
 	if (dist(tanktop.x, tanktop.y, mirrorcenter.x, mirrorcenter.y) < 50){
 		tanktop.position = mirrorcenter;
 		iswearingtank = true;
-		//fwip.play();
+		fwip.play();
 	} else {
 		iswearingtank = false;
 	}
@@ -169,7 +187,7 @@ function draw() {
 	if (dist(shirt.x, shirt.y, mirrorcenter.x, mirrorcenter.y) < 50){
 		shirt.position = mirrorcenter;
 		iswearingshirt = true;
-		//rustle.play();
+		rustle.play();
 	} else {
 		iswearingshirt = false;
 	}
@@ -177,7 +195,7 @@ function draw() {
 	if (dist(sweatshirt.x, sweatshirt.y, mirrorcenter.x, mirrorcenter.y) < 50){
 		sweatshirt.position = mirrorcenter;
 		iswearingsweat = true;
-		//fwoop.play();
+		fwoop.play();
 	} else{
 		iswearingsweat = false;
 	}
@@ -207,7 +225,7 @@ function draw() {
 
 			background('#cfa6f5');
 
-			text("Tanktop", 100, 100);
+			text("2", 100, 100);
 
 			mirror.visible = false;
 			phone.visible = false;
@@ -217,14 +235,25 @@ function draw() {
 			floor.visible = true;
 			player.visible = true;
 			blockend.visible = true;
-		
+			carR.visible = true;
+			carL.visible = true;
 
-		
+		carR.direction = 'left';
+		carR.speed = 4;
+		if (carR.x < -100){
+			carR.x = 1800;
+		}
+
+		carL.direction = 'right';
+		carL.speed = 4.3;
+		if (carL.x > 2300){
+			carL.x = -400;
+		}
 
 			if (kb.pressing('left')){
-				blockend.vel.x = 3;
+				blockend.vel.x = 7;
 			} else if (kb.pressing('right')){
-				blockend.vel.x = -3;
+				blockend.vel.x = -7;
 			} else {
 				blockend.vel.x = 0;
 			}
@@ -233,7 +262,7 @@ function draw() {
 				stage = 5;
 			}
 
-			camera.x = player.x;
+			
 			break;
 
 
@@ -245,7 +274,7 @@ function draw() {
 
 		background('#98e2eb');
 
-		text("Shirt", 100, 100);
+		text("3", 100, 100);
 
 		mirror.visible = false;
 		phone.visible = false;
@@ -254,14 +283,26 @@ function draw() {
 		sweatshirt.visible = false;
 		floor.visible = true;
 		player.visible = true;
+		blockend.visible = true;
+		carR.visible = true;
+		carL.visible = true;
 
+		carR.direction = 'left';
+		carR.speed = 4;
+		if (carR.x < -100){
+			carR.x = 2000;
+		}
 		
-		
+		carL.direction = 'right';
+		carL.speed = 4.3;
+		if (carL.x > 2300){
+			carL.x = -400;
+		}
 
 		if (kb.pressing('left')){
-			blockend.vel.x = 3;
+			blockend.vel.x = 7;
 		} else if (kb.pressing('right')){
-			blockend.vel.x = -3;
+			blockend.vel.x = -7;
 		} else {
 			blockend.vel.x = 0;
 		}
@@ -270,7 +311,7 @@ function draw() {
 			stage = 9;
 		}
 
-		camera.x = player.x;
+		
 			break;
 
 
@@ -283,7 +324,7 @@ function draw() {
 
 		background('#f5abce');
 
-		text("Sweatshirt", 100, 100);
+		text("4", 100, 100);
 
 		mirror.visible = false;
 		phone.visible = false;
@@ -292,29 +333,42 @@ function draw() {
 		sweatshirt.visible = false;
 		floor.visible = true;
 		player.visible = true;
+		blockend.visible = true;
+		carR.visible = true;
+		carL.visible = true;
 
-		phone.x = 1000;
-			phone.y = 1000;
+		carR.direction = 'left';
+		carR.speed = 4;
+		if (carR.x < -100){
+			carR.x = 2000;
+		}
+
+		carL.direction = 'right';
+		carL.speed = 4.3;
+		if (carL.x > 2300){
+			carL.x = -400;
+		}
 
 			if (kb.pressing('left')){
-				player.vel.x = -3;
+				blockend.vel.x = 7;
 			} else if (kb.pressing('right')){
-				player.vel.x = 3;
+				blockend.vel.x = -7;
 			} else {
-				player.vel.x = 0;
+				blockend.vel.x = 0;
 			}
 
 			if (player.collides(blockend)){
 				stage = 7;
 			}
 
-		camera.x = player.x;
+		
 
 			break;
 
 		case 5://clothes no tank
 			
 		background('#ecf7ba');
+		text("5", 100, 100);
 
 		mirror.visible = true;
 		phone.visible = true;
@@ -325,6 +379,12 @@ function draw() {
 		player.visible = false;
 		blockend.visible = false;
 		iswearingtank = false;
+		carR.visible = false;
+		carL.visible = false;
+
+
+blockend.x = 3050;
+
 //clothes move
 		if (shirt.mouse.dragging()){
 			shirt.moveTowards(
@@ -348,6 +408,7 @@ function draw() {
 	if (dist(shirt.x, shirt.y, mirrorcenter.x, mirrorcenter.y) < 50){
 		shirt.position = mirrorcenter;
 		iswearingshirt = true;
+		rustle.play();
 	} else {
 		iswearingshirt = false;
 	}
@@ -355,6 +416,7 @@ function draw() {
 	if (dist(sweatshirt.x, sweatshirt.y, mirrorcenter.x, mirrorcenter.y) < 50){
 		sweatshirt.position = mirrorcenter;
 		iswearingsweat = true;
+		fwoop.play();
 	} else{
 		iswearingsweat = false;
 	}
@@ -371,10 +433,10 @@ function draw() {
 			break;
 
 
-			case 6://shirt after tank
+			case 6://shirt after tank walk
 			background('#98e2eb');
 
-			text("Shirt", 100, 100);
+			text("6", 100, 100);
 			
 				mirror.visible = false;
 				phone.visible = false;
@@ -383,14 +445,27 @@ function draw() {
 				sweatshirt.visible = false;
 				floor.visible = true;
 				player.visible = true;
+				blockend.visible = true;
+				carR.visible = true;
+				carL.visible = true;
 		
-				
+				carR.direction = 'left';
+		carR.speed = 4;
+		if (carR.x < -100){
+			carR.x = 2000;
+		}
+
+		carL.direction = 'right';
+		carL.speed = 4.3;
+		if (carL.x > 2300){
+			carL.x = -400;
+		}
 				
 		
 				if (kb.pressing('left')){
-					blockend.vel.x = 3;
+					blockend.vel.x = 7;
 				} else if (kb.pressing('right')){
-					blockend.vel.x = -3;
+					blockend.vel.x = -7;
 				} else {
 					blockend.vel.x = 0;
 				}
@@ -399,13 +474,14 @@ function draw() {
 					stage = 7;
 				}
 		
-				camera.x = player.x;
+			
 			break;
 
 
 
 			case 7://no tank no shirt
 				background('#ecf7ba');
+				text("7", 100, 100);
 
 				mirror.visible = true;
 				phone.visible = true;
@@ -415,6 +491,10 @@ function draw() {
 				floor.visible = false;
 				player.visible = false;
 				blockend.visible = false;
+				carR.visible = false;
+				carL.visible = false;
+				
+				blockend.x = 3050;
 
 				if (sweatshirt.mouse.dragging()){
 					sweatshirt.moveTowards(
@@ -427,6 +507,7 @@ function draw() {
 				if (dist(sweatshirt.x, sweatshirt.y, mirrorcenter.x, mirrorcenter.y) < 50){
 					sweatshirt.position = mirrorcenter;
 					iswearingsweat = true;
+					fwoop.play();
 				} else{
 					iswearingsweat = false;
 				}
@@ -442,7 +523,7 @@ function draw() {
 			//mustang man walk
 			case 8:
 			background('#f5abce');
-			text("Sweatshirt", 100, 100);
+			text("mustang", 100, 100);
 
 			mirror.visible = false;
 			phone.visible = false;
@@ -451,20 +532,34 @@ function draw() {
 			sweatshirt.visible = false;
 			floor.visible = true;
 			player.visible = true;
+			blockend.visible = true;
+			carR.visible = true;
+			carL.visible = true;
 
-
-			phone.x = 1000;
-			phone.y = 1000;
-
-			if (kb.pressing('left')){
-				player.vel.x = -3;
-			} else if (kb.pressing('right')){
-				player.vel.x = 3;
-			} else {
-				player.vel.x = 0;
+			carR.direction = 'left';
+			carR.speed = 4;
+			if (carR.x < -100){
+				carR.x = 2000;
 			}
 
-		camera.x = player.x;
+			carL.direction = 'right';
+		carL.speed = 4.3;
+		if (carL.x > 2300){
+			carL.x = -400;
+		}
+
+
+			if (kb.pressing('left')){
+				blockend.vel.x = 7;
+			} else if (kb.pressing('right')){
+				blockend.vel.x = -7;
+			} else {
+				blockend.vel.x = 0;
+			}
+
+			if (player.collides(blockend)){
+				stage = 11;
+			}
 
 			break;
 
@@ -472,6 +567,7 @@ function draw() {
 //no shirt, tank sweat
 			case 9:
 				background('#ecf7ba');
+				text("9", 100, 100);
 
 				mirror.visible = true;
 				phone.visible = true;
@@ -481,6 +577,9 @@ function draw() {
 				floor.visible = false;
 				player.visible = false;
 				blockend.visible = false;
+				carR.visible = false;
+				carL.visible = false;
+				blockend.x = 3050;
 
 				if (tanktop.mouse.dragging()){
 					tanktop.moveTowards(
@@ -502,6 +601,7 @@ function draw() {
 				if (dist(tanktop.x, tanktop.y, mirrorcenter.x, mirrorcenter.y) < 50){
 					tanktop.position = mirrorcenter;
 					iswearingtank = true;
+					fwip.play();
 			
 				} else {
 					iswearingtank = false;
@@ -509,6 +609,7 @@ function draw() {
 				if (dist(sweatshirt.x, sweatshirt.y, mirrorcenter.x, mirrorcenter.y) < 50){
 					sweatshirt.position = mirrorcenter;
 					iswearingsweat = true;
+					fwoop.play();
 				} else{
 					iswearingsweat = false;
 				}
@@ -523,11 +624,11 @@ function draw() {
 
 			break;
 
-///walk with tank then go to stage 8 (tank after shirt)
+///walk with tank (tank after shirt)
 			case 10:
 				background('#cfa6f5');
 
-				text("Tanktop", 100, 100);
+				text("10", 100, 100);
 	
 				mirror.visible = false;
 				phone.visible = false;
@@ -537,23 +638,53 @@ function draw() {
 				floor.visible = true;
 				player.visible = true;
 				blockend.visible = true;
+				carR.visible = true;
+				carL.visible = true;
 			
-	
+				carR.direction = 'left';
+				carR.speed = 4;
+				if (carR.x < -100){
+					carR.x = 2000;
+				}
 			
+				carL.direction = 'right';
+		carL.speed = 4.3;
+		if (carL.x > 2300){
+			carL.x = -400;
+		}
 	
 				if (kb.pressing('left')){
-					blockend.vel.x = 3;
+					blockend.vel.x = 7;
 				} else if (kb.pressing('right')){
-					blockend.vel.x = -3;
+					blockend.vel.x = -7;
 				} else {
 					blockend.vel.x = 0;
 				}
 	
 				if (player.collides(blockend)){
-					stage = 8;
+					stage = 7;
 				}
 	
-				camera.x = player.x;
+				
+
+			break;
+
+
+//ending LOLLLLLLLLLLLLl
+			case 11:
+				background('#cfa6f5');
+
+				text("11/end", 100, 100);
+				mirror.visible = false;
+				phone.visible = false;
+				tanktop.visible = false;
+				shirt.visible = false;
+				sweatshirt.visible = false;
+				floor.visible = false;
+				player.visible = false;
+				blockend.visible = false;
+				carR.visible = false;
+				carL.visible = false;
 
 			break;
 	}
