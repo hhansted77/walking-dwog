@@ -10,7 +10,7 @@ let iswearingtank = false;
 let iswearingshirt = false;
 let iswearingsweat = false;
 
-let fwip, fwoop, rustle;
+let fwip, fwoop, rustle, streetbg, honk, honk2, beep, beep2;
 let stage = 0;
 
 let player, floor;
@@ -23,6 +23,11 @@ function preload() {
 	rustle = loadSound("assets/fabric1.mp3");
 	fwoop = loadSound("assets/fabric2.mp3");
 	fwip = loadSound("assets/fabric3.mp3");
+	streetbg = loadSound("assets/busystreet.mp3");
+	honk = loadSound("assets/honk.mp3");
+	honk2 = loadSound("assets/carhonk.mp3");
+	beep = loadSound("assets/carbeep.mp3");
+	beep2 = loadSound("assets/beepbeep.mp3");
 }
 
 function setup() {
@@ -182,20 +187,29 @@ function draw() {
 			if (iswearingtank == false && dist(tanktop.x, tanktop.y, mirrorcenter.x, mirrorcenter.y) < 50) {
 				tanktop.position = mirrorcenter;
 				iswearingtank = true;
-				fwip.play();
+				//fwip.play();
 			}
+				if (mouse.released() && iswearingtank == true){
+					fwip.play();
+				}
 
 			if (iswearingshirt == false && dist(shirt.x, shirt.y, mirrorcenter.x, mirrorcenter.y) < 50) {
 				shirt.position = mirrorcenter;
 				iswearingshirt = true;
-				rustle.play();
+				//rustle.play();
 			} 
+				if (mouse.released() && iswearingshirt == true){
+					rustle.play();
+				}
 
 			if (iswearingsweat == false && dist(sweatshirt.x, sweatshirt.y, mirrorcenter.x, mirrorcenter.y) < 50) {
 				sweatshirt.position = mirrorcenter;
 				iswearingsweat = true;
-				fwoop.play();
+				//fwoop.play();
 			} 
+				if (mouse.released() && iswearingsweat == true){
+					fwoop.play();
+				}
 
 
 			//below is the code where we switch to next scene
@@ -234,6 +248,10 @@ function draw() {
 			blockend.visible = true;
 			carR.visible = true;
 			carL.visible = true;
+
+			if (floor.visible == true){
+				streetbg.play();
+			}
 
 			carR.direction = 'left';
 			carR.speed = 4;
@@ -407,13 +425,17 @@ function draw() {
 			if (iswearingshirt == false && dist(shirt.x, shirt.y, mirrorcenter.x, mirrorcenter.y) < 50) {
 				shirt.position = mirrorcenter;
 				iswearingshirt = true;
-				rustle.play();
 			} 
+			if (mouse.released() && iswearingshirt == true){
+				rustle.play();
+			}
 			if (iswearingsweat == false && dist(sweatshirt.x, sweatshirt.y, mirrorcenter.x, mirrorcenter.y) < 50) {
 				sweatshirt.position = mirrorcenter;
 				iswearingsweat = true;
-				fwoop.play();
 			} 
+				if (mouse.released() && iswearingsweat == true){
+					fwoop.play();
+				}
 			//stage change
 			if (kb.presses(' ') && iswearingshirt === true) {
 				stage = 6;
@@ -501,8 +523,10 @@ function draw() {
 			if (iswearingsweat == false && dist(sweatshirt.x, sweatshirt.y, mirrorcenter.x, mirrorcenter.y) < 50) {
 				sweatshirt.position = mirrorcenter;
 				iswearingsweat = true;
-				fwoop.play();
 			}
+				if (mouse.released() && iswearingsweat == true){
+					fwoop.play();
+				}
 
 			if (kb.presses(' ') && iswearingsweat === true) {
 				stage = 8;
@@ -595,13 +619,17 @@ function draw() {
 			if (iswearingtank == false && dist(tanktop.x, tanktop.y, mirrorcenter.x, mirrorcenter.y) < 50) {
 				tanktop.position = mirrorcenter;
 				iswearingtank = true;
-				fwip.play();
 			}
+				if (mouse.released() && iswearingtank == true){
+					fwip.play();
+				}
 			if (iswearingsweat == false && dist(sweatshirt.x, sweatshirt.y, mirrorcenter.x, mirrorcenter.y) < 50) {
 				sweatshirt.position = mirrorcenter;
 				iswearingsweat = true;
-				fwoop.play();
 			} 
+				if (mouse.released() && iswearingsweat == true){
+					fwoop.play();
+				}
 			//wearing to next stage
 			if (kb.presses(' ') && iswearingtank === true) {
 				stage = 10;
