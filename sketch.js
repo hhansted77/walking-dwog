@@ -13,7 +13,7 @@ let iswearingsweat = false;
 let fwip, fwoop, rustle, streetbg, honk, honk2, beep, beep2;
 let stage = 0;
 
-let player, floor;
+let player, floor, bg;
 
 let carR, carL;
 
@@ -35,6 +35,15 @@ function setup() {
 	displayMode('centered');
 
 	world.gravity.y = 7;
+
+	bg = new Sprite();
+	bg.width = 4000;
+	bg.height = 1000;
+	bg.image = "assets/background.png"
+	bg.image.scale = 1.2;
+	bg.collider = "none";
+	bg.x = 1200;
+	bg.y = 300;
 
 	carR = new Sprite();
 	carR.width = 200;
@@ -149,6 +158,7 @@ function draw() {
 			floor.visible = false;
 			player.visible = false;
 			blockend.visible = false;
+			bg.visible = false;
 
 
 			//below is th code for dragging clothes
@@ -248,6 +258,7 @@ function draw() {
 			blockend.visible = true;
 			carR.visible = true;
 			carL.visible = true;
+			bg.visible = true;
 
 			if (floor.visible == true){
 				streetbg.play();
@@ -258,6 +269,8 @@ function draw() {
 			if (carR.x < -100) {
 				carR.x = 1800;
 			}
+
+			if (carR.overlaps(player)) beep.play();
 
 			carL.direction = 'right';
 			carL.speed = 4.3;
@@ -302,6 +315,10 @@ function draw() {
 			carR.visible = true;
 			carL.visible = true;
 
+			if (floor.visible == true){
+				streetbg.play();
+			}
+
 			carR.direction = 'left';
 			carR.speed = 4;
 			if (carR.x < -100) {
@@ -313,6 +330,7 @@ function draw() {
 			if (carL.x > 2300) {
 				carL.x = -400;
 			}
+			if (carL.overlaps(player)) honk.play();
 
 			if (kb.pressing('left')) {
 				blockend.vel.x = 7;
@@ -352,11 +370,17 @@ function draw() {
 			carR.visible = true;
 			carL.visible = true;
 
+			if (floor.visible == true){
+				streetbg.play();
+			}
+
 			carR.direction = 'left';
 			carR.speed = 4;
 			if (carR.x < -100) {
 				carR.x = 2000;
 			}
+
+			if (carR.overlaps(player)) beep.play();
 
 			carL.direction = 'right';
 			carL.speed = 4.3;
@@ -397,6 +421,7 @@ function draw() {
 			carR.visible = false;
 			carL.visible = false;
 
+		
 
 			blockend.x = 3050;
 
@@ -464,6 +489,10 @@ function draw() {
 			carR.visible = true;
 			carL.visible = true;
 
+			if (floor.visible == true){
+				streetbg.play();
+			}
+
 			carR.direction = 'left';
 			carR.speed = 4;
 			if (carR.x < -100) {
@@ -475,6 +504,8 @@ function draw() {
 			if (carL.x > 2300) {
 				carL.x = -400;
 			}
+
+			if (carL.overlaps(player)) honk.play();
 
 
 			if (kb.pressing('left')) {
@@ -551,6 +582,10 @@ function draw() {
 			blockend.visible = true;
 			carR.visible = true;
 			carL.visible = true;
+
+			if (floor.visible == true){
+				streetbg.play();
+			}
 
 			carR.direction = 'left';
 			carR.speed = 4;
@@ -657,6 +692,10 @@ function draw() {
 			blockend.visible = true;
 			carR.visible = true;
 			carL.visible = true;
+
+			if (floor.visible == true){
+				streetbg.play();
+			}
 
 			carR.direction = 'left';
 			carR.speed = 4;
