@@ -14,6 +14,7 @@ let fwip, fwoop, rustle, streetbg, honk, honk2, beep, beep2;
 let stage = 0;
 
 let player, floor, bg, mustang, house;
+let tankwalk;
 
 let carR, carL, carR2, carL2;
 
@@ -129,10 +130,23 @@ function setup() {
 	player = new Sprite();
 	player.collider = 'dynamic';
 	player.y = 575;
+	player
 	//player.image = "assets/tankframe1.png";
 	//player.image.scale = .5;
 	//player.addAni('walk', 'assets/tankframe1.png');
 	//player.ani.scale = .5;
+
+	//tankwalk = loadAnimation(
+	//	'assets/tankframe1.png',
+	//	'assets/tankframe2.png',
+	//	'assets/tankframe3.png',
+	//	'assets/tankframe4.png',
+	//	'assets/tankframe5.png',
+	//	'assets/tankframe6.png',
+	//	'assets/tankframe7.png',
+	//);
+
+	//tankwalk.framedelay = 5;
 	
 	floor = new Sprite();
 	floor.width = 6000;
