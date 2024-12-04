@@ -129,8 +129,11 @@ function setup() {
 	player = new Sprite();
 	player.collider = 'dynamic';
 	player.y = 575;
-	//player.addAni('walk', 'assets/tankwalknew.png', 7);
-
+	//player.image = "assets/tankframe1.png";
+	//player.image.scale = .5;
+	//player.addAni('walk', 'assets/tankframe1.png');
+	//player.ani.scale = .5;
+	
 	floor = new Sprite();
 	floor.width = 6000;
 	floor.height = 200;
@@ -167,11 +170,11 @@ function draw() {
 			house.visible = false;
 			
 
-			text("Walk Yo Dawg", 100, 100);
+			text("Press Space to Start", 100, 100);
 			textSize(75);
 
 			if (kb.presses(' ')) {
-				stage = 6;
+				stage = 1;
 			}
 
 			break;
@@ -179,7 +182,7 @@ function draw() {
 		case 1: //clothes
 
 			background('#ecf7ba');
-			text("1", 100, 100);
+			
 
 			mirror.visible = true;
 			phone.visible = true;
@@ -279,8 +282,6 @@ function draw() {
 
 			background('#cfa6f5');
 
-			text("2", 100, 100);
-
 			mirror.visible = false;
 			phone.visible = false;
 			tanktop.visible = false;
@@ -350,7 +351,7 @@ function draw() {
 
 			background('#98e2eb');
 
-			text("3", 100, 100);
+		
 
 			mirror.visible = false;
 			phone.visible = false;
@@ -423,7 +424,7 @@ function draw() {
 			sweatshirt.x = 960;
 			background('#f5abce');
 
-			text("4", 100, 100);
+			
 
 			mirror.visible = false;
 			phone.visible = false;
@@ -491,7 +492,6 @@ function draw() {
 
 			background('#ecf7ba');
 			textSize(20);
-			text("5", 100, 100);
 			text("i don't want to get honked at again...", 460, 350, 20);
 
 			mirror.visible = true;
@@ -565,8 +565,7 @@ function draw() {
 		case 6://shirt after tank walk
 			background('#98e2eb');
 
-			text("6", 100, 100);
-
+			
 			mirror.visible = false;
 			phone.visible = false;
 			tanktop.visible = false;
@@ -632,7 +631,6 @@ function draw() {
 		case 7://no tank no shirt
 			background('#ecf7ba');
 			textSize(20);
-			text("7", 100, 100);
 			text("I don't want to wear this in public anymore...", 470, 350, 15);
 			text("Somehow this one was worse, maybe I need to cover more?", 655, 350, 15);
 
@@ -680,7 +678,6 @@ function draw() {
 		//mustang man walk
 		case 8:
 			background('#f5abce');
-			text("mustang", 100, 100);
 
 			mirror.visible = false;
 			phone.visible = false;
@@ -755,7 +752,6 @@ function draw() {
 		case 9:
 			background('#ecf7ba');
 			textSize(20);
-			text("9", 100, 100);
 			text("i don't want to get honked at again...", 660, 350, 15);
 
 			mirror.visible = true;
@@ -824,8 +820,6 @@ function draw() {
 		///walk with tank (tank after shirt)
 		case 10:
 			background('#cfa6f5');
-
-			text("10", 100, 100);
 
 			mirror.visible = false;
 			phone.visible = false;
@@ -1030,7 +1024,6 @@ function draw() {
 
 		background('#ecf7ba');
 			textSize(20);
-			text("16", 100, 100);
 			text("Definitely not...", 470, 350, 15);
 			text("At least the sweatshirt worked...", 655, 350, 15);
 
@@ -1079,8 +1072,6 @@ function draw() {
 		case 17:
 			sweatshirt.x = 960;
 			background('#f5abce');
-
-			text("4", 100, 100);
 
 			mirror.visible = false;
 			phone.visible = false;
@@ -1146,8 +1137,6 @@ function draw() {
 		case 18:
 			sweatshirt.x = 960;
 			background('#f5abce');
-
-			text("18", 100, 100);
 
 			mirror.visible = false;
 			phone.visible = false;
