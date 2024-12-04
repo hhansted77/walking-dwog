@@ -13,7 +13,7 @@ let iswearingsweat = false;
 let fwip, fwoop, rustle, streetbg, honk, honk2, beep, beep2;
 let stage = 0;
 
-let player, floor, bg, mustang;
+let player, floor, bg, mustang, house;
 
 let carR, carL;
 
@@ -68,7 +68,12 @@ function setup() {
 	mustang.x = -200;
 	mustang.y = 550;
 
-	
+	house = new Sprite();
+	house.width = 500;
+	house.height = 570;
+	house.x = 200;
+	house.y = 600;
+	house.collider = 'kinematic';
 
 
 	mirror = new Sprite(300, 350, 300, 500, 's');
@@ -145,12 +150,13 @@ function draw() {
 			floor.visible = false;
 			blockend.visible = false;
 			bg.visible = false;
+			house.visible = false;
 			
 
 			text("Walk Yo Dawg", 100, 100);
 			textSize(75);
 
-			if (mouse.presses()) {
+			if (kb.presses(' ')) {
 				stage = 1;
 			}
 
@@ -174,7 +180,9 @@ function draw() {
 			player.visible = false;
 			blockend.visible = false;
 			bg.visible = false;
-			
+			house.visible = false;
+			carL.visible = false;
+			carR.visible = false;
 
 
 			//below is th code for dragging clothes
@@ -275,7 +283,9 @@ function draw() {
 			carR.visible = true;
 			carL.visible = true;
 			bg.visible = true;
-			
+			house.visible = true;
+
+			text("2", 100, 100);
 
 			if (floor.visible == true){
 				streetbg.play();
@@ -298,14 +308,17 @@ function draw() {
 			if (kb.pressing('left')) {
 				blockend.vel.x = 3;
 				bg.vel.x = 2;
+				house.vel.x = 2.1;
 				//player.changeAni('walk');
 			} else if (kb.pressing('right')) {
 				blockend.vel.x = -3;
 				bg.vel.x = -2;
+				house.vel.x = -2.1;
 				//player.changeAni('walk');
 			} else {
 				blockend.vel.x = 0;
 				bg.vel.x = 0;
+				house.vel.x = 0;
 				//player.changeAni('walk');
 			}
 
@@ -313,7 +326,7 @@ function draw() {
 				stage = 5;
 			}
 
-			if (bg.x > 1480){
+			if (bg.x > 1500){
 				bg.vel.x = 0;
 				blockend.vel.x = 0;
 			}
@@ -343,7 +356,7 @@ function draw() {
 			carR.visible = true;
 			carL.visible = true;
 			bg.visible = true;
-			
+			house.visible = true;
 
 			if (floor.visible == true){
 				streetbg.play();
@@ -365,12 +378,15 @@ function draw() {
 			if (kb.pressing('left')) {
 				blockend.vel.x = 3;
 				bg.vel.x = 2;
+				house.vel.x = 2.1;
 			} else if (kb.pressing('right')) {
 				blockend.vel.x = -3;
 				bg.vel.x = -2;
+				house.vel.x = -2.1;
 			} else {
 				blockend.vel.x = 0;
 				bg.vel.x = 0;
+				house.vel.x = 0;
 			}
 
 			if (player.collides(blockend)) {
@@ -403,7 +419,7 @@ function draw() {
 			carR.visible = true;
 			carL.visible = true;
 			bg.visible = true;
-			
+			house.visible = true;
 
 			if (floor.visible == true){
 				streetbg.play();
@@ -426,17 +442,20 @@ function draw() {
 			if (kb.pressing('left')) {
 				blockend.vel.x = 3;
 				bg.vel.x = 2;
+				house.vel.x = 2.1;
 			} else if (kb.pressing('right')) {
 				blockend.vel.x = -3;
 				bg.vel.x = -2;
+				house.vel.x = -2.1;
 			} else {
 				blockend.vel.x = 0;
 				bg.vel.x = 0;
+				house.vel.x = 0;
 			}
 
 
 			if (player.collides(blockend)) {
-				stage = 7;
+				stage = 1;
 			}
 
 
@@ -446,7 +465,9 @@ function draw() {
 		case 5://clothes no tank
 
 			background('#ecf7ba');
+			textSize(20);
 			text("5", 100, 100);
+			text("i don't want to get honked at again...", 460, 350, 20);
 
 			mirror.visible = true;
 			phone.visible = true;
@@ -460,11 +481,12 @@ function draw() {
 			carR.visible = false;
 			carL.visible = false;
 			bg.visible = false;
-			
+			house.visible = false;
 		
 
 			blockend.x = 2630;
 			bg.x = 1200;
+			house.x = 200;
 
 			//clothes move
 			if (shirt.mouse.dragging()) {
@@ -530,7 +552,7 @@ function draw() {
 			carR.visible = true;
 			carL.visible = true;
 			bg.visible = true;
-			
+			house.visible = true;
 
 			if (floor.visible == true){
 				streetbg.play();
@@ -554,12 +576,15 @@ function draw() {
 			if (kb.pressing('left')) {
 				blockend.vel.x = 3;
 				bg.vel.x = 2;
+				house.vel.x = 2.1;
 			} else if (kb.pressing('right')) {
 				blockend.vel.x = -3;
 				bg.vel.x = -2;
+				house.vel.x = -2.1;
 			} else {
 				blockend.vel.x = 0;
 				bg.vel.x = 0;
+				house.vel.x = 0;
 			}
 
 			if (player.collides(blockend)) {
@@ -573,7 +598,10 @@ function draw() {
 
 		case 7://no tank no shirt
 			background('#ecf7ba');
+			textSize(20);
 			text("7", 100, 100);
+			text("I don't want to wear this in public anymore...", 470, 350, 15);
+			text("Somehow this one was worse, maybe I need to cover more?", 655, 350, 15);
 
 			mirror.visible = true;
 			phone.visible = true;
@@ -586,10 +614,11 @@ function draw() {
 			carR.visible = false;
 			carL.visible = false;
 			bg.visible = false;
-			
+			house.visible = false;
 
 			blockend.x = 2630;
 			bg.x = 1200;
+			house.x = 200;
 
 			if (sweatshirt.mouse.dragging()) {
 				sweatshirt.moveTowards(
@@ -609,7 +638,7 @@ function draw() {
 				}
 
 			if (kb.presses(' ') && iswearingsweat === true) {
-				stage = 8;
+				stage = 17;
 			}
 			break;
 
@@ -633,7 +662,7 @@ function draw() {
 			carL.visible = true;
 			bg.visible = true;
 			mustang.visible = true;
-			
+			house.visible = true;
 
 			if (floor.visible == true){
 				streetbg.play();
@@ -657,14 +686,17 @@ function draw() {
 			if (kb.pressing('left')) {
 				blockend.vel.x = 3;
 				bg.vel.x = 2;
+				house.vel.x = 2.1;
 			} else if (kb.pressing('right')) {
 				blockend.vel.x = -3;
 				bg.vel.x = -2;
+				house.vel.x = -2.1
 				mustang.vel.x = 2;
 			} else {
 				blockend.vel.x = 0;
 				bg.vel.x = 0;
 				mustang.vel.x = 0;
+				house.vel.x = 0;
 			}
 
 			if (player.overlaps(mustang)) {
@@ -677,7 +709,9 @@ function draw() {
 		//no shirt, tank sweat
 		case 9:
 			background('#ecf7ba');
+			textSize(20);
 			text("9", 100, 100);
+			text("i don't want to get honked at again...", 660, 350, 15);
 
 			mirror.visible = true;
 			phone.visible = true;
@@ -690,10 +724,11 @@ function draw() {
 			carR.visible = false;
 			carL.visible = false;
 			bg.visible = false;
-			
+			house.visible = false;
 
 			blockend.x = 2630;
 			bg.x = 1200;
+			house.x = 200;
 			//dragging
 			if (tanktop.mouse.dragging()) {
 				tanktop.moveTowards(
@@ -756,7 +791,7 @@ function draw() {
 			carR.visible = true;
 			carL.visible = true;
 			bg.visible = true;
-			
+			house.visible = true;
 
 			if (floor.visible == true){
 				streetbg.play();
@@ -777,12 +812,15 @@ function draw() {
 			if (kb.pressing('left')) {
 				blockend.vel.x = 3;
 				bg.vel.x = 2;
+				house.vel.x = 2.1;
 			} else if (kb.pressing('right')) {
 				blockend.vel.x = -3;
 				bg.vel.x = -2;
+				house.vel.x = -2.1;
 			} else {
 				blockend.vel.x = 0;
 				bg.vel.x = 0;
+				house.vel.x = 0;
 			}
 
 			if (player.collides(blockend)) {
@@ -796,9 +834,9 @@ function draw() {
 
 		//ending LOLLLLLLLLLLLLl
 		case 11:
-			background('#cfa6f5');
+			background('#242323');
 
-			text("11/end", 100, 100);
+			text("11 creepy face", 100, 100);
 			mirror.visible = false;
 			phone.visible = false;
 			tanktop.visible = false;
@@ -811,8 +849,269 @@ function draw() {
 			carL.visible = false;
 			bg.visible = false;
 			mustang.visible = false;
-			
+			house.visible = false;
 
+			if (kb.presses(' ')) {
+				stage = 12;
+			}
+
+			break;
+
+		case 12:
+			background('#242323');
+
+			text("12 creepy face talking", 100, 100);
+			mirror.visible = false;
+			phone.visible = false;
+			tanktop.visible = false;
+			shirt.visible = false;
+			sweatshirt.visible = false;
+			floor.visible = false;
+			player.visible = false;
+			blockend.visible = false;
+			carR.visible = false;
+			carL.visible = false;
+			bg.visible = false;
+			mustang.visible = false;
+			house.visible = false;
+
+			if (kb.presses(' ')) {
+				stage = 13;
+			}
+
+			break;
+
+		case 13:
+			background('#242323');
+
+			text("13 im 16", 100, 100);
+			mirror.visible = false;
+			phone.visible = false;
+			tanktop.visible = false;
+			shirt.visible = false;
+			sweatshirt.visible = false;
+			floor.visible = false;
+			player.visible = false;
+			blockend.visible = false;
+			carR.visible = false;
+			carL.visible = false;
+			bg.visible = false;
+			mustang.visible = false;
+			house.visible = false;
+
+			if (kb.presses(' ')) {
+				stage = 14;
+			}
+
+			break;
+
+			case 14:
+				background('#242323');
+
+			text("14 creepy face caught", 100, 100);
+			mirror.visible = false;
+			phone.visible = false;
+			tanktop.visible = false;
+			shirt.visible = false;
+			sweatshirt.visible = false;
+			floor.visible = false;
+			player.visible = false;
+			blockend.visible = false;
+			carR.visible = false;
+			carL.visible = false;
+			bg.visible = false;
+			mustang.visible = false;
+			house.visible = false;
+
+			if (kb.presses(' ')) {
+				stage = 15;
+			}
+
+			break;
+
+			case 15:
+
+			background('#ecf7ba');
+
+			text("15 back at home", 100, 100);
+			mirror.visible = false;
+			phone.visible = false;
+			tanktop.visible = false;
+			shirt.visible = false;
+			sweatshirt.visible = false;
+			floor.visible = false;
+			player.visible = false;
+			blockend.visible = false;
+			carR.visible = false;
+			carL.visible = false;
+			bg.visible = false;
+			mustang.visible = false;
+			house.visible = false;
+
+			break;
+
+		case 16: 
+
+		background('#ecf7ba');
+			textSize(20);
+			text("16", 100, 100);
+			text("Definitely not...", 470, 350, 15);
+			text("At least the sweatshirt worked...", 655, 350, 15);
+
+			mirror.visible = true;
+			phone.visible = true;
+			tanktop.visible = false;
+			shirt.visible = false;
+			sweatshirt.visible = true;
+			floor.visible = false;
+			player.visible = false;
+			blockend.visible = false;
+			carR.visible = false;
+			carL.visible = false;
+			bg.visible = false;
+			house.visible = false;
+
+			blockend.x = 2630;
+			bg.x = 1200;
+			house.x = 200;
+
+			if (sweatshirt.mouse.dragging()) {
+				sweatshirt.moveTowards(
+					mouseX + sweatshirt.mouse.x,
+					mouseY + sweatshirt.mouse.y,
+					1);
+			} else {
+				sweatshirt.moveTowards(960, 350, .04);
+				iswearingsweat = false;
+			}
+			if (iswearingsweat == false && dist(sweatshirt.x, sweatshirt.y, mirrorcenter.x, mirrorcenter.y) < 50) {
+				sweatshirt.position = mirrorcenter;
+				iswearingsweat = true;
+			}
+				if (mouse.released() && iswearingsweat == true){
+					fwoop.play();
+				}
+
+			if (kb.presses(' ') && iswearingsweat === true) {
+				stage = 8;
+			}
+		break;
+
+
+		case 17:
+			sweatshirt.x = 960;
+			background('#f5abce');
+
+			text("4", 100, 100);
+
+			mirror.visible = false;
+			phone.visible = false;
+			tanktop.visible = false;
+			shirt.visible = false;
+			sweatshirt.visible = false;
+			floor.visible = true;
+			player.visible = true;
+			blockend.visible = false;
+			carR.visible = true;
+			carL.visible = true;
+			bg.visible = true;
+			house.visible = true;
+
+			if (floor.visible == true){
+				streetbg.play();
+			}
+
+			carR.direction = 'left';
+			carR.speed = 6;
+			if (carR.x < -100) {
+				carR.x = 2000;
+			}
+
+			if (carR.overlaps(player)) beep.play();
+
+			carL.direction = 'right';
+			carL.speed = 6.3;
+			if (carL.x > 2300) {
+				carL.x = -400;
+			}
+
+			if (kb.pressing('left')) {
+				blockend.vel.x = 3;
+				bg.vel.x = 2;
+				house.vel.x = 2.1;
+			} else if (kb.pressing('right')) {
+				blockend.vel.x = -3;
+				bg.vel.x = -2;
+				house.vel.x = -2.1;
+			} else {
+				blockend.vel.x = 0;
+				bg.vel.x = 0;
+				house.vel.x = 0;
+			}
+
+
+			if (player.collides(blockend)) {
+				stage = 16;
+			}
+
+
+		break;
+
+		case 18:
+			sweatshirt.x = 960;
+			background('#f5abce');
+
+			text("18", 100, 100);
+
+			mirror.visible = false;
+			phone.visible = false;
+			tanktop.visible = false;
+			shirt.visible = false;
+			sweatshirt.visible = false;
+			floor.visible = true;
+			player.visible = true;
+			blockend.visible = false;
+			carR.visible = true;
+			carL.visible = true;
+			bg.visible = true;
+			house.visible = true;
+
+			if (floor.visible == true){
+				streetbg.play();
+			}
+
+			carR.direction = 'left';
+			carR.speed = 6;
+			if (carR.x < -100) {
+				carR.x = 2000;
+			}
+
+			if (carR.overlaps(player)) beep.play();
+
+			carL.direction = 'right';
+			carL.speed = 6.3;
+			if (carL.x > 2300) {
+				carL.x = -400;
+			}
+
+			if (kb.pressing('left')) {
+				blockend.vel.x = 3;
+				bg.vel.x = 2;
+				house.vel.x = 2.1;
+			} else if (kb.pressing('right')) {
+				blockend.vel.x = -3;
+				bg.vel.x = -2;
+				house.vel.x = -2.1;
+			} else {
+				blockend.vel.x = 0;
+				bg.vel.x = 0;
+				house.vel.x = 0;
+			}
+
+
+			if (player.collides(blockend)) {
+				stage = 17;
+			}
 			break;
 	}
 
