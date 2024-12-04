@@ -937,6 +937,8 @@ function draw() {
 			background('#242323');
 
 			text("12 creepy face talking", 100, 100);
+
+			text("hey mama, you married? You married girlie? i don't see a ring on that finger, mama c'mere" 300, 300, 50);
 			mirror.visible = false;
 			phone.visible = false;
 			tanktop.visible = false;
@@ -962,7 +964,8 @@ function draw() {
 		case 13:
 			background('#242323');
 
-			text("13 im 16", 100, 100);
+			text("13", 100, 100);
+			text("I'm 16, I'm sorry, please I'm not interested-" 300, 400, 50);
 			mirror.visible = false;
 			phone.visible = false;
 			tanktop.visible = false;
@@ -989,6 +992,7 @@ function draw() {
 				background('#242323');
 
 			text("14 creepy face caught", 100, 100);
+			text("OHHH SHIT-" 300, 300, );
 			mirror.visible = false;
 			phone.visible = false;
 			tanktop.visible = false;
@@ -1016,6 +1020,7 @@ function draw() {
 			background('#ecf7ba');
 
 			text("15 back at home", 100, 100);
+			text("I don't want to walk outside anymore..." 300, 400, 50);
 			mirror.visible = false;
 			phone.visible = false;
 			tanktop.visible = false;
