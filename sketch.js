@@ -15,7 +15,7 @@ let stage = 0;
 
 let player, floor, bg, mustang, house;
 
-let carR, carL;
+let carR, carL, carR2, carL2;
 
 
 
@@ -54,12 +54,26 @@ function setup() {
 	carR.x = 2000
 	carR.y = 550;
 
+	carR2 = new Sprite();
+	carR2.width = 200;
+	carR2.height = 85;
+	carR2.collider = 'none';
+	carR2.x = 1800;
+	carR2.y = 550;
+
 	carL = new Sprite();
-	carL.width = 200
+	carL.width = 200;
 	carL.height = 85;
 	carL.collider = 'none';
 	carL.x = -300;
 	carL.y = 550;
+
+	carL2 = new Sprite();
+	carL2.width = 200;
+	carL2.height = 85;
+	carL2.collider = 'none';
+	carL2.x = -400;
+	carL2.y = 550;
 
 	mustang = new Sprite();
 	mustang.width = 200;
@@ -157,14 +171,10 @@ function draw() {
 			textSize(75);
 
 			if (kb.presses(' ')) {
-				stage = 1;
+				stage = 6;
 			}
 
 			break;
-
-
-
-
 
 		case 1: //clothes
 
@@ -183,7 +193,12 @@ function draw() {
 			house.visible = false;
 			carL.visible = false;
 			carR.visible = false;
+			carR2.visible = false;
+			carL2.visible = false;
 
+			blockend.x = 2630;
+			bg.x = 1200;
+			house.x = 200;
 
 			//below is th code for dragging clothes
 			if (tanktop.mouse.dragging()) {
@@ -260,12 +275,6 @@ function draw() {
 			}
 			break;
 
-
-
-
-
-
-
 		case 2: // walk + tank
 
 			background('#cfa6f5');
@@ -282,6 +291,8 @@ function draw() {
 			blockend.visible = false;
 			carR.visible = true;
 			carL.visible = true;
+			carL2.visible = false;
+			carR2.visible = false;
 			bg.visible = true;
 			house.visible = true;
 
@@ -298,6 +309,7 @@ function draw() {
 			}
 
 			if (carR.overlaps(player)) beep.play();
+			if (carL.overlaps(player)) honk2.play();
 
 			carL.direction = 'right';
 			carL.speed = 6.3;
@@ -334,11 +346,6 @@ function draw() {
 
 			break;
 
-
-
-
-
-
 		case 3: //walk + shirt
 
 			background('#98e2eb');
@@ -355,6 +362,8 @@ function draw() {
 			blockend.visible = false;
 			carR.visible = true;
 			carL.visible = true;
+			carL2.visible = true;
+			carR2.visible = true;
 			bg.visible = true;
 			house.visible = true;
 
@@ -368,12 +377,26 @@ function draw() {
 				carR.x = 2000;
 			}
 
+			carR2.direction = 'left';
+			carR2.speed = 6;
+			if (carR2.x < -120) {
+				carR2.x = 2000;
+			}
+
 			carL.direction = 'right';
 			carL.speed = 6.3;
 			if (carL.x > 2300) {
 				carL.x = -400;
 			}
+
+			carL2.direction = 'right';
+			carL2.speed = 6;
+			if (carL2.x > 2300) {
+				carL2.x = -400;
+			}
+
 			if (carL.overlaps(player)) honk.play();
+			if (carR2.overlaps(player)) beep2.play();
 
 			if (kb.pressing('left')) {
 				blockend.vel.x = 3;
@@ -396,12 +419,6 @@ function draw() {
 
 			break;
 
-
-
-
-
-
-
 		case 4://walk + sweat
 			sweatshirt.x = 960;
 			background('#f5abce');
@@ -418,6 +435,8 @@ function draw() {
 			blockend.visible = false;
 			carR.visible = true;
 			carL.visible = true;
+			carR2.visible = true;
+			carL2.visible = false;
 			bg.visible = true;
 			house.visible = true;
 
@@ -429,6 +448,12 @@ function draw() {
 			carR.speed = 6;
 			if (carR.x < -100) {
 				carR.x = 2000;
+			}
+
+			carR2.direction = 'left';
+			carR2.speed = 6.4;
+			if (carR2.x < -100) {
+				carR2.x = 2000;
 			}
 
 			if (carR.overlaps(player)) beep.play();
@@ -480,6 +505,8 @@ function draw() {
 			iswearingtank = false;
 			carR.visible = false;
 			carL.visible = false;
+			carR2.visible = false;
+			carL2.visible = false;
 			bg.visible = false;
 			house.visible = false;
 		
@@ -530,11 +557,10 @@ function draw() {
 			}
 
 			if (kb.presses(' ') && iswearingsweat === true) {
-				stage = 4;
+				stage = 18;
 			}
 
 			break;
-
 
 		case 6://shirt after tank walk
 			background('#98e2eb');
@@ -551,6 +577,8 @@ function draw() {
 			blockend.visible = false;
 			carR.visible = true;
 			carL.visible = true;
+			carR2.visible = false;
+			carL2.visible = true;
 			bg.visible = true;
 			house.visible = true;
 
@@ -570,7 +598,14 @@ function draw() {
 				carL.x = -400;
 			}
 
-			if (carL.overlaps(player)) honk.play();
+			carL2.direction = 'right';
+			carL2.speed = 5;
+			if (carL2.x > 2300) {
+				carL2.x = -300;
+			}
+
+			if (carL2.overlaps(player)) beep2.play();
+			if (carR.overlaps(player)) beep.play();
 
 
 			if (kb.pressing('left')) {
@@ -594,8 +629,6 @@ function draw() {
 
 			break;
 
-
-
 		case 7://no tank no shirt
 			background('#ecf7ba');
 			textSize(20);
@@ -613,6 +646,8 @@ function draw() {
 			blockend.visible = false;
 			carR.visible = false;
 			carL.visible = false;
+			carR2.visible = false;
+			carL2.visible = false;
 			bg.visible = false;
 			house.visible = false;
 
@@ -642,9 +677,6 @@ function draw() {
 			}
 			break;
 
-
-
-
 		//mustang man walk
 		case 8:
 			background('#f5abce');
@@ -660,6 +692,8 @@ function draw() {
 			blockend.visible = false;
 			carR.visible = true;
 			carL.visible = true;
+			carR2.visible = true;
+			carL2.visible = true;
 			bg.visible = true;
 			mustang.visible = true;
 			house.visible = true;
@@ -671,13 +705,25 @@ function draw() {
 			carR.direction = 'left';
 			carR.speed = 6;
 			if (carR.x < -100) {
-				carR.x = 2000;
+				carR.x = 2100;
+			}
+
+			carR2.direction = 'left';
+			carR2.speed = 5;
+			if (carR2.x < -100) {
+				carR2.x = 2000;
 			}
 
 			carL.direction = 'right';
 			carL.speed = 6.3;
 			if (carL.x > 2300) {
 				carL.x = -400;
+			}
+
+			carL2.direction = 'right';
+			carL2.speed = 5.7;
+			if (carL2.x > 2300) {
+				carL2.x = -300;
 			}
 
 
@@ -705,7 +751,6 @@ function draw() {
 
 			break;
 
-
 		//no shirt, tank sweat
 		case 9:
 			background('#ecf7ba');
@@ -723,6 +768,8 @@ function draw() {
 			blockend.visible = false;
 			carR.visible = false;
 			carL.visible = false;
+			carR2.visible = false;
+			carL2.visible = false;
 			bg.visible = false;
 			house.visible = false;
 
@@ -768,7 +815,7 @@ function draw() {
 				stage = 10;
 			}
 			if (kb.presses(' ') && iswearingsweat === true) {
-				stage = 4;
+				stage = 18;
 			}
 
 
@@ -790,6 +837,8 @@ function draw() {
 			blockend.visible = false;
 			carR.visible = true;
 			carL.visible = true;
+			carR2.visible = true;
+			carL2.visible = true;
 			bg.visible = true;
 			house.visible = true;
 
@@ -803,11 +852,29 @@ function draw() {
 				carR.x = 2000;
 			}
 
+			carR2.direction = 'left';
+			carR2.speed = 5.3;
+			if (carR2.x < -1200) {
+				carR2.x = 1900;
+			}
+
 			carL.direction = 'right';
 			carL.speed = 6.3;
 			if (carL.x > 2300) {
 				carL.x = -400;
 			}
+
+			carL2.direction = 'right';
+			carL2.speed = 6;
+			if (carL2.x > 2300) {
+				carL2.x = -400;
+			}
+
+			if (carL2.overlaps(player)) honk2.play();
+			if (carR.overlaps(player)) beep.play();
+			if (carL.overlaps(player)) honk.play();
+			if (carR2.overlaps(player)) beep2.play();
+
 
 			if (kb.pressing('left')) {
 				blockend.vel.x = 3;
@@ -831,8 +898,7 @@ function draw() {
 
 			break;
 
-
-		//ending LOLLLLLLLLLLLLl
+		//creepy face LOLLLLLLLLLLLLl
 		case 11:
 			background('#242323');
 
@@ -847,6 +913,8 @@ function draw() {
 			blockend.visible = false;
 			carR.visible = false;
 			carL.visible = false;
+			carR2.visible = false;
+			carL2.visible = false;
 			bg.visible = false;
 			mustang.visible = false;
 			house.visible = false;
@@ -856,7 +924,7 @@ function draw() {
 			}
 
 			break;
-
+			//creepy guy talks
 		case 12:
 			background('#242323');
 
@@ -871,6 +939,8 @@ function draw() {
 			blockend.visible = false;
 			carR.visible = false;
 			carL.visible = false;
+			carR2.visible = false;
+			carL2.visible = false;
 			bg.visible = false;
 			mustang.visible = false;
 			house.visible = false;
@@ -880,7 +950,7 @@ function draw() {
 			}
 
 			break;
-
+			//im underage
 		case 13:
 			background('#242323');
 
@@ -895,6 +965,8 @@ function draw() {
 			blockend.visible = false;
 			carR.visible = false;
 			carL.visible = false;
+			carR2.visible = false;
+			carL2.visible = false;
 			bg.visible = false;
 			mustang.visible = false;
 			house.visible = false;
@@ -904,7 +976,7 @@ function draw() {
 			}
 
 			break;
-
+			//creepy guy gets spooked
 			case 14:
 				background('#242323');
 
@@ -919,6 +991,8 @@ function draw() {
 			blockend.visible = false;
 			carR.visible = false;
 			carL.visible = false;
+			carR2.visible = false;
+			carL2.visible = false;
 			bg.visible = false;
 			mustang.visible = false;
 			house.visible = false;
@@ -928,7 +1002,7 @@ function draw() {
 			}
 
 			break;
-
+		//you go back home and think... yeah i dont want to walk outside again
 			case 15:
 
 			background('#ecf7ba');
@@ -944,12 +1018,14 @@ function draw() {
 			blockend.visible = false;
 			carR.visible = false;
 			carL.visible = false;
+			carR2.visible = false;
+			carL2.visible = false;
 			bg.visible = false;
 			mustang.visible = false;
 			house.visible = false;
 
 			break;
-
+		//2nd time you choose the sweatshirt which leads to mustang
 		case 16: 
 
 		background('#ecf7ba');
@@ -968,6 +1044,8 @@ function draw() {
 			blockend.visible = false;
 			carR.visible = false;
 			carL.visible = false;
+			carR2.visible = false;
+			carL2.visible = false;
 			bg.visible = false;
 			house.visible = false;
 
@@ -997,7 +1075,7 @@ function draw() {
 			}
 		break;
 
-
+		//sweatshirt after no tank no shirt
 		case 17:
 			sweatshirt.x = 960;
 			background('#f5abce');
@@ -1014,6 +1092,8 @@ function draw() {
 			blockend.visible = false;
 			carR.visible = true;
 			carL.visible = true;
+			carR2.visible = true;
+			carL2.visible = false;
 			bg.visible = true;
 			house.visible = true;
 
@@ -1027,7 +1107,13 @@ function draw() {
 				carR.x = 2000;
 			}
 
-			if (carR.overlaps(player)) beep.play();
+			carR2.direction = 'left';
+			carR2.speed = 6.5;
+			if (carR2.x < -120) {
+				carR2.x = 2000;
+			}
+
+			if (carR.overlaps(player)) honk.play();
 
 			carL.direction = 'right';
 			carL.speed = 6.3;
@@ -1056,7 +1142,7 @@ function draw() {
 
 
 		break;
-
+		//sweatshirt after 1 piece of clothes walk
 		case 18:
 			sweatshirt.x = 960;
 			background('#f5abce');
@@ -1073,6 +1159,8 @@ function draw() {
 			blockend.visible = false;
 			carR.visible = true;
 			carL.visible = true;
+			carR2.visible = true;
+			carL2.visible = false;
 			bg.visible = true;
 			house.visible = true;
 
@@ -1086,7 +1174,13 @@ function draw() {
 				carR.x = 2000;
 			}
 
-			if (carR.overlaps(player)) beep.play();
+			carR2.direction = 'left';
+			carR2.speed = 6.4;
+			if (carR2.x < -100) {
+				carR2.x = 1900;
+			}
+
+			
 
 			carL.direction = 'right';
 			carL.speed = 6.3;
@@ -1110,7 +1204,7 @@ function draw() {
 
 
 			if (player.collides(blockend)) {
-				stage = 17;
+				stage = 16;
 			}
 			break;
 	}
