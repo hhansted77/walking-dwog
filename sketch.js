@@ -13,9 +13,11 @@ let iswearingsweat = false;
 let fwip, fwoop, rustle, streetbg, honk, honk2, beep, beep2;
 let stage = 0;
 
-let player, floor, bg;
+let player, floor, bg, mustang;
 
 let carR, carL;
+
+
 
 
 
@@ -39,7 +41,7 @@ function setup() {
 	bg = new Sprite();
 	bg.width = 4000;
 	bg.height = 1000;
-	bg.image = "assets/background.png"
+	bg.image = "assets/newbg.png"
 	bg.image.scale = 1.2;
 	bg.collider = "none";
 	bg.x = 1200;
@@ -58,6 +60,14 @@ function setup() {
 	carL.collider = 'none';
 	carL.x = -300;
 	carL.y = 550;
+
+	mustang = new Sprite();
+	mustang.width = 200;
+	mustang.height = 95;
+	mustang.collider = 'none';
+	mustang.x = -200;
+	mustang.y = 550;
+
 
 	mirror = new Sprite(300, 350, 300, 500, 's');
 	mirrorcenter = createVector(300, 350);
@@ -98,6 +108,7 @@ function setup() {
 	player = new Sprite();
 	player.collider = 'dynamic';
 	player.y = 575;
+	//player.addAni('walk', 'assets/tankwalknew.png', 7);
 
 	floor = new Sprite();
 	floor.width = 6000;
@@ -110,7 +121,7 @@ function setup() {
 	blockend.width = 300;
 	blockend.height = 500;
 	blockend.collider = "kinematic";
-	blockend.x = 3050;
+	blockend.x = 2630;
 	blockend.y = 350;
 
 
@@ -131,6 +142,7 @@ function draw() {
 			player.visible = false;
 			floor.visible = false;
 			blockend.visible = false;
+			bg.visible = false;
 
 			text("Walk Yo Dawg", 100, 100);
 			textSize(75);
@@ -255,7 +267,7 @@ function draw() {
 			sweatshirt.visible = false;
 			floor.visible = true;
 			player.visible = true;
-			blockend.visible = true;
+			blockend.visible = false;
 			carR.visible = true;
 			carL.visible = true;
 			bg.visible = true;
@@ -265,7 +277,7 @@ function draw() {
 			}
 
 			carR.direction = 'left';
-			carR.speed = 4;
+			carR.speed = 6;
 			if (carR.x < -100) {
 				carR.x = 1800;
 			}
@@ -273,17 +285,23 @@ function draw() {
 			if (carR.overlaps(player)) beep.play();
 
 			carL.direction = 'right';
-			carL.speed = 4.3;
+			carL.speed = 6.3;
 			if (carL.x > 2300) {
 				carL.x = -400;
 			}
 
 			if (kb.pressing('left')) {
-				blockend.vel.x = 7;
+				blockend.vel.x = 3;
+				bg.vel.x = 2;
+				//player.changeAni('walk');
 			} else if (kb.pressing('right')) {
-				blockend.vel.x = -7;
+				blockend.vel.x = -3;
+				bg.vel.x = -2;
+				//player.changeAni('walk');
 			} else {
 				blockend.vel.x = 0;
+				bg.vel.x = 0;
+				//player.changeAni('walk');
 			}
 
 			if (player.collides(blockend)) {
@@ -311,33 +329,37 @@ function draw() {
 			sweatshirt.visible = false;
 			floor.visible = true;
 			player.visible = true;
-			blockend.visible = true;
+			blockend.visible = false;
 			carR.visible = true;
 			carL.visible = true;
+			bg.visible = true;
 
 			if (floor.visible == true){
 				streetbg.play();
 			}
 
 			carR.direction = 'left';
-			carR.speed = 4;
+			carR.speed = 6;
 			if (carR.x < -100) {
 				carR.x = 2000;
 			}
 
 			carL.direction = 'right';
-			carL.speed = 4.3;
+			carL.speed = 6.3;
 			if (carL.x > 2300) {
 				carL.x = -400;
 			}
 			if (carL.overlaps(player)) honk.play();
 
 			if (kb.pressing('left')) {
-				blockend.vel.x = 7;
+				blockend.vel.x = 3;
+				bg.vel.x = 2;
 			} else if (kb.pressing('right')) {
-				blockend.vel.x = -7;
+				blockend.vel.x = -3;
+				bg.vel.x = -2;
 			} else {
 				blockend.vel.x = 0;
+				bg.vel.x = 0;
 			}
 
 			if (player.collides(blockend)) {
@@ -366,16 +388,17 @@ function draw() {
 			sweatshirt.visible = false;
 			floor.visible = true;
 			player.visible = true;
-			blockend.visible = true;
+			blockend.visible = false;
 			carR.visible = true;
 			carL.visible = true;
+			bg.visible = true;
 
 			if (floor.visible == true){
 				streetbg.play();
 			}
 
 			carR.direction = 'left';
-			carR.speed = 4;
+			carR.speed = 6;
 			if (carR.x < -100) {
 				carR.x = 2000;
 			}
@@ -383,18 +406,22 @@ function draw() {
 			if (carR.overlaps(player)) beep.play();
 
 			carL.direction = 'right';
-			carL.speed = 4.3;
+			carL.speed = 6.3;
 			if (carL.x > 2300) {
 				carL.x = -400;
 			}
 
 			if (kb.pressing('left')) {
-				blockend.vel.x = 7;
+				blockend.vel.x = 3;
+				bg.vel.x = 2;
 			} else if (kb.pressing('right')) {
-				blockend.vel.x = -7;
+				blockend.vel.x = -3;
+				bg.vel.x = -2;
 			} else {
 				blockend.vel.x = 0;
+				bg.vel.x = 0;
 			}
+
 
 			if (player.collides(blockend)) {
 				stage = 7;
@@ -420,10 +447,12 @@ function draw() {
 			iswearingtank = false;
 			carR.visible = false;
 			carL.visible = false;
+			bg.visible = false;
 
 		
 
-			blockend.x = 3050;
+			blockend.x = 2630;
+			bg.x = 1200;
 
 			//clothes move
 			if (shirt.mouse.dragging()) {
@@ -485,22 +514,23 @@ function draw() {
 			sweatshirt.visible = false;
 			floor.visible = true;
 			player.visible = true;
-			blockend.visible = true;
+			blockend.visible = false;
 			carR.visible = true;
 			carL.visible = true;
+			bg.visible = true;
 
 			if (floor.visible == true){
 				streetbg.play();
 			}
 
 			carR.direction = 'left';
-			carR.speed = 4;
+			carR.speed = 6;
 			if (carR.x < -100) {
 				carR.x = 2000;
 			}
 
 			carL.direction = 'right';
-			carL.speed = 4.3;
+			carL.speed = 6.3;
 			if (carL.x > 2300) {
 				carL.x = -400;
 			}
@@ -509,11 +539,14 @@ function draw() {
 
 
 			if (kb.pressing('left')) {
-				blockend.vel.x = 7;
+				blockend.vel.x = 3;
+				bg.vel.x = 2;
 			} else if (kb.pressing('right')) {
-				blockend.vel.x = -7;
+				blockend.vel.x = -3;
+				bg.vel.x = -2;
 			} else {
 				blockend.vel.x = 0;
+				bg.vel.x = 0;
 			}
 
 			if (player.collides(blockend)) {
@@ -539,8 +572,10 @@ function draw() {
 			blockend.visible = false;
 			carR.visible = false;
 			carL.visible = false;
+			bg.visible = false;
 
-			blockend.x = 3050;
+			blockend.x = 2630;
+			bg.x = 1200;
 
 			if (sweatshirt.mouse.dragging()) {
 				sweatshirt.moveTowards(
@@ -579,36 +614,45 @@ function draw() {
 			sweatshirt.visible = false;
 			floor.visible = true;
 			player.visible = true;
-			blockend.visible = true;
+			blockend.visible = false;
 			carR.visible = true;
 			carL.visible = true;
+			bg.visible = true;
+			mustang.visible = true;
 
 			if (floor.visible == true){
 				streetbg.play();
 			}
 
 			carR.direction = 'left';
-			carR.speed = 4;
+			carR.speed = 6;
 			if (carR.x < -100) {
 				carR.x = 2000;
 			}
 
 			carL.direction = 'right';
-			carL.speed = 4.3;
+			carL.speed = 6.3;
 			if (carL.x > 2300) {
 				carL.x = -400;
 			}
 
 
+
+
 			if (kb.pressing('left')) {
-				blockend.vel.x = 7;
+				blockend.vel.x = 3;
+				bg.vel.x = 2;
 			} else if (kb.pressing('right')) {
-				blockend.vel.x = -7;
+				blockend.vel.x = -3;
+				bg.vel.x = -2;
+				mustang.vel.x = 2;
 			} else {
 				blockend.vel.x = 0;
+				bg.vel.x = 0;
+				mustang.vel.x = 0;
 			}
 
-			if (player.collides(blockend)) {
+			if (player.overlaps(mustang)) {
 				stage = 11;
 			}
 
@@ -630,7 +674,10 @@ function draw() {
 			blockend.visible = false;
 			carR.visible = false;
 			carL.visible = false;
-			blockend.x = 3050;
+			bg.visible = false;
+
+			blockend.x = 2630;
+			bg.x = 1200;
 			//dragging
 			if (tanktop.mouse.dragging()) {
 				tanktop.moveTowards(
@@ -689,32 +736,36 @@ function draw() {
 			sweatshirt.visible = false;
 			floor.visible = true;
 			player.visible = true;
-			blockend.visible = true;
+			blockend.visible = false;
 			carR.visible = true;
 			carL.visible = true;
+			bg.visible = true;
 
 			if (floor.visible == true){
 				streetbg.play();
 			}
 
 			carR.direction = 'left';
-			carR.speed = 4;
+			carR.speed = 6;
 			if (carR.x < -100) {
 				carR.x = 2000;
 			}
 
 			carL.direction = 'right';
-			carL.speed = 4.3;
+			carL.speed = 6.3;
 			if (carL.x > 2300) {
 				carL.x = -400;
 			}
 
 			if (kb.pressing('left')) {
-				blockend.vel.x = 7;
+				blockend.vel.x = 3;
+				bg.vel.x = 2;
 			} else if (kb.pressing('right')) {
-				blockend.vel.x = -7;
+				blockend.vel.x = -3;
+				bg.vel.x = -2;
 			} else {
 				blockend.vel.x = 0;
+				bg.vel.x = 0;
 			}
 
 			if (player.collides(blockend)) {
@@ -741,6 +792,8 @@ function draw() {
 			blockend.visible = false;
 			carR.visible = false;
 			carL.visible = false;
+			bg.visible = false;
+			mustang.visible = false;
 
 			break;
 	}
