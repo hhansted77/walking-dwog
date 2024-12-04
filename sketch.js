@@ -68,6 +68,8 @@ function setup() {
 	mustang.x = -200;
 	mustang.y = 550;
 
+	
+
 
 	mirror = new Sprite(300, 350, 300, 500, 's');
 	mirrorcenter = createVector(300, 350);
@@ -143,6 +145,7 @@ function draw() {
 			floor.visible = false;
 			blockend.visible = false;
 			bg.visible = false;
+			
 
 			text("Walk Yo Dawg", 100, 100);
 			textSize(75);
@@ -171,6 +174,7 @@ function draw() {
 			player.visible = false;
 			blockend.visible = false;
 			bg.visible = false;
+			
 
 
 			//below is th code for dragging clothes
@@ -271,6 +275,7 @@ function draw() {
 			carR.visible = true;
 			carL.visible = true;
 			bg.visible = true;
+			
 
 			if (floor.visible == true){
 				streetbg.play();
@@ -308,6 +313,11 @@ function draw() {
 				stage = 5;
 			}
 
+			if (bg.x > 1480){
+				bg.vel.x = 0;
+				blockend.vel.x = 0;
+			}
+
 
 			break;
 
@@ -333,6 +343,7 @@ function draw() {
 			carR.visible = true;
 			carL.visible = true;
 			bg.visible = true;
+			
 
 			if (floor.visible == true){
 				streetbg.play();
@@ -392,6 +403,7 @@ function draw() {
 			carR.visible = true;
 			carL.visible = true;
 			bg.visible = true;
+			
 
 			if (floor.visible == true){
 				streetbg.play();
@@ -448,7 +460,7 @@ function draw() {
 			carR.visible = false;
 			carL.visible = false;
 			bg.visible = false;
-
+			
 		
 
 			blockend.x = 2630;
@@ -518,6 +530,7 @@ function draw() {
 			carR.visible = true;
 			carL.visible = true;
 			bg.visible = true;
+			
 
 			if (floor.visible == true){
 				streetbg.play();
@@ -573,6 +586,7 @@ function draw() {
 			carR.visible = false;
 			carL.visible = false;
 			bg.visible = false;
+			
 
 			blockend.x = 2630;
 			bg.x = 1200;
@@ -619,6 +633,7 @@ function draw() {
 			carL.visible = true;
 			bg.visible = true;
 			mustang.visible = true;
+			
 
 			if (floor.visible == true){
 				streetbg.play();
@@ -675,6 +690,7 @@ function draw() {
 			carR.visible = false;
 			carL.visible = false;
 			bg.visible = false;
+			
 
 			blockend.x = 2630;
 			bg.x = 1200;
@@ -740,6 +756,7 @@ function draw() {
 			carR.visible = true;
 			carL.visible = true;
 			bg.visible = true;
+			
 
 			if (floor.visible == true){
 				streetbg.play();
@@ -794,6 +811,7 @@ function draw() {
 			carL.visible = false;
 			bg.visible = false;
 			mustang.visible = false;
+			
 
 			break;
 	}
