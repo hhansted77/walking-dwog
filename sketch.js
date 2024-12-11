@@ -54,13 +54,19 @@ function setup() {
 	carR.collider = "none";
 	carR.x = 2000
 	carR.y = 550;
+	carR.image = "assets/yellowcar.png";
+	carR.image.scale = 2.5;
+	
 
 	carR2 = new Sprite();
 	carR2.width = 200;
 	carR2.height = 85;
 	carR2.collider = 'none';
-	carR2.x = 1800;
+	carR2.x = 1600;
 	carR2.y = 550;
+	carR2.image = "assets/greencar.png";
+	carR2.image.scale = 2.5;
+	
 
 	carL = new Sprite();
 	carL.width = 200;
@@ -68,13 +74,17 @@ function setup() {
 	carL.collider = 'none';
 	carL.x = -300;
 	carL.y = 550;
+	carL.image = "assets/bluecar.png";
+	carL.image.scale = 2.5;
 
 	carL2 = new Sprite();
 	carL2.width = 200;
 	carL2.height = 85;
 	carL2.collider = 'none';
-	carL2.x = -400;
+	carL2.x = -500;
 	carL2.y = 550;
+	carL2.image = "assets/redcar.png";
+	carL2.image.scale = 2.5;
 
 	mustang = new Sprite();
 	mustang.width = 200;
