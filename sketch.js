@@ -92,6 +92,8 @@ function setup() {
 	mustang.collider = 'none';
 	mustang.x = -200;
 	mustang.y = 550;
+	mustang.image = "assets/msutang.png";
+	mustang.image.scale = 2.5;
 
 	house = new Sprite();
 	house.width = 500;
@@ -192,6 +194,7 @@ function draw() {
 			blockend.visible = false;
 			bg.visible = false;
 			house.visible = false;
+			carR2.visible = false;
 			
 
 			text("Press Space to Start", 100, 100);
