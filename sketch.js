@@ -16,7 +16,11 @@ let stage = 0;
 let player, floor, bg, mustang, house;
 let tankwalk;
 
+let face, facelook, facecaught;
+
 let carR, carL, carR2, carL2;
+
+let textbox11, textbox12, textbox13
 
 
 
@@ -47,6 +51,64 @@ function setup() {
 	bg.collider = "none";
 	bg.x = 1200;
 	bg.y = 300;
+
+	face = new Sprite();
+	face.collider = 'static';
+	face.addAni('appear', 
+		'assets/face1.png',
+		'assets/face2.png',
+		'assets/face3.png',
+		'assets/face4.png',
+		'assets/face5.png',
+		'assets/face6.png',
+		'assets/face7.png',
+		'assets/face8.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png'
+	)
+
+	facelook = new Sprite();
+	facelook.collider = 'static';
+	facelook.addAni('look',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/face9.png',
+		'assets/faceeyedown.png',
+		'assets/faceeyedown.png',
+		'assets/faceeyedown.png',
+		'assets/faceeyedown.png',
+		'assets/faceeyedown.png',
+		'assets/faceeyedown.png',
+	)
+	facelook.frameDelay = 15;
+
+	facecaught = new Sprite();
+	facecaught.image = 'assets/faceuhoh.png';
+	facecaught.collider = 'static';
 
 	carR = new Sprite();
 	carR.width = 200;
@@ -142,7 +204,7 @@ function setup() {
 	player = new Sprite();
 	player.collider = 'dynamic';
 	player.y = 575;
-	player
+	player.color = 'green';
 	//player.image = "assets/tankframe1.png";
 	//player.image.scale = .5;
 	//player.addAni('walk', 'assets/tankframe1.png');
@@ -166,6 +228,7 @@ function setup() {
 	floor.collider = 'static';
 	floor.x = 500;
 	floor.y = 700;
+	floor.color = '#99b57d';
 
 	blockend = new Sprite();
 	blockend.width = 300;
@@ -195,13 +258,16 @@ function draw() {
 			bg.visible = false;
 			house.visible = false;
 			carR2.visible = false;
+			face.visible = false; 
+			facelook.visible = false;
+			facecaught.visible = false;
 			
 
 			text("Press Space to Start", 100, 100);
 			textSize(75);
 
 			if (kb.presses(' ')) {
-				stage = 1;
+				stage = 11;
 			}
 
 			break;
@@ -757,6 +823,7 @@ function draw() {
 				blockend.vel.x = 3;
 				bg.vel.x = 2;
 				house.vel.x = 2.1;
+				mustang.vel.x = 2;
 			} else if (kb.pressing('right')) {
 				blockend.vel.x = -3;
 				bg.vel.x = -2;
@@ -771,6 +838,7 @@ function draw() {
 
 			if (player.overlaps(mustang)) {
 				stage = 11;
+
 			}
 
 			break;
@@ -921,7 +989,8 @@ function draw() {
 
 		//creepy face LOLLLLLLLLLLLLl
 		case 11:
-			background('#242323');
+			background('#140f0f');
+
 
 			text("11 creepy face", 100, 100);
 			mirror.visible = false;
@@ -939,15 +1008,18 @@ function draw() {
 			bg.visible = false;
 			mustang.visible = false;
 			house.visible = false;
+			face.visible = true;
+
 
 			if (kb.presses(' ')) {
 				stage = 12;
 			}
 
+
 			break;
 			//creepy guy talks
 		case 12:
-			background('#242323');
+			background('#140f0f');
 
 			text("12 creepy face talking", 100, 100);
 
@@ -967,6 +1039,9 @@ function draw() {
 			bg.visible = false;
 			mustang.visible = false;
 			house.visible = false;
+			face.visible = false;
+			facelook.visible = true;
+			
 
 			if (kb.presses(' ')) {
 				stage = 13;
@@ -975,7 +1050,7 @@ function draw() {
 			break;
 			//im underage
 		case 13:
-			background('#242323');
+			background('#140f0f');
 
 			text("13", 100, 100);
 			text("I'm 16, I'm sorry, please I'm not interested-", 300, 400, 25);
@@ -1002,10 +1077,10 @@ function draw() {
 			break;
 			//creepy guy gets spooked
 			case 14:
-				background('#242323');
+				background('#140f0f');
 
-			text("14 creepy face caught", 100, 100);
-			text("OHHH SHIT-", 300, 300, );
+			
+			
 			mirror.visible = false;
 			phone.visible = false;
 			tanktop.visible = false;
@@ -1021,6 +1096,10 @@ function draw() {
 			bg.visible = false;
 			mustang.visible = false;
 			house.visible = false;
+			facelook.visible = false;
+			facecaught.visible = true;
+
+			text("OHHH SHIT-", 300, 300, );
 
 			if (kb.presses(' ')) {
 				stage = 15;
@@ -1049,6 +1128,7 @@ function draw() {
 			bg.visible = false;
 			mustang.visible = false;
 			house.visible = false;
+			facecaught.visible = false;
 
 			break;
 		//2nd time you choose the sweatshirt which leads to mustang
