@@ -161,8 +161,10 @@ function setup() {
 	house.width = 500;
 	house.height = 570;
 	house.x = 200;
-	house.y = 600;
+	house.y = 320;
 	house.collider = 'kinematic';
+	house.image = 'assets/house.png';
+	house.image.scale = 2.2;
 
 
 	mirror = new Sprite(300, 350, 300, 500, 's');
