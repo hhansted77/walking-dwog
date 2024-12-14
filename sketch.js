@@ -299,7 +299,7 @@ function draw() {
 			textSize(75);
 
 			if (kb.presses(' ')) {
-				stage = 11;
+				stage = 1;
 			}
 
 			break;
