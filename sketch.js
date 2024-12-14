@@ -20,7 +20,7 @@ let face, facelook, facecaught;
 
 let carR, carL, carR2, carL2;
 
-let textbox11, textbox12, textbox13
+let textbox12, textbox13, textbox14
 
 
 
@@ -237,6 +237,29 @@ function setup() {
 	blockend.x = 2630;
 	blockend.y = 350;
 
+	textbox12 = new Sprite();
+	textbox12.x = 200;
+	textbox12.y = 350;
+	textbox12.height = 500;
+	textbox12.width = 300;
+	textbox12.collider = 'none';
+	textbox12.image = 'assets/textbox12.png';
+	textbox12.image.scale = 2;
+
+	textbox13 = new Sprite();
+	textbox13.x = 1300;
+	textbox13.y = 350;
+	textbox13.collider = 'none';
+	textbox13.image = 'assets/textbox13.png';
+	textbox13.image.scale = 2;
+
+	textbox14 = new Sprite();
+	textbox14.x = 200;
+	textbox14.y = 350;
+	textbox14.collider = 'none';
+	textbox14.image = 'assets/textbox14.png';
+	textbox14.image.scale = 2;
+
 
 }
 
@@ -261,6 +284,9 @@ function draw() {
 			face.visible = false; 
 			facelook.visible = false;
 			facecaught.visible = false;
+			textbox12.visible = false;
+			textbox13.visible = false;
+			textbox14.visible = false;
 			
 
 			text("Press Space to Start", 100, 100);
@@ -992,7 +1018,6 @@ function draw() {
 			background('#140f0f');
 
 
-			text("11 creepy face", 100, 100);
 			mirror.visible = false;
 			phone.visible = false;
 			tanktop.visible = false;
@@ -1021,9 +1046,8 @@ function draw() {
 		case 12:
 			background('#140f0f');
 
-			text("12 creepy face talking", 100, 100);
 
-			text("hey mama, you married? You married girlie? i don't see a ring on that finger, mama c'mere", 300, 300, 25);
+			
 			mirror.visible = false;
 			phone.visible = false;
 			tanktop.visible = false;
@@ -1041,6 +1065,7 @@ function draw() {
 			house.visible = false;
 			face.visible = false;
 			facelook.visible = true;
+			textbox12.visible = true;
 			
 
 			if (kb.presses(' ')) {
@@ -1069,6 +1094,8 @@ function draw() {
 			bg.visible = false;
 			mustang.visible = false;
 			house.visible = false;
+			textbox12.visible = false;
+			textbox13.visible = true;
 
 			if (kb.presses(' ')) {
 				stage = 14;
@@ -1098,6 +1125,8 @@ function draw() {
 			house.visible = false;
 			facelook.visible = false;
 			facecaught.visible = true;
+			textbox13.visible = false;
+			textbox14.visible = true;
 
 			text("OHHH SHIT-", 300, 300, );
 
@@ -1129,6 +1158,7 @@ function draw() {
 			mustang.visible = false;
 			house.visible = false;
 			facecaught.visible = false;
+			textbox14.visible = false;
 
 			break;
 		//2nd time you choose the sweatshirt which leads to mustang
