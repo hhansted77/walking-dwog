@@ -20,7 +20,7 @@ let face, facelook, facecaught;
 
 let carR, carL, carR2, carL2;
 
-let textbox12, textbox13, textbox14
+let textbox12, textbox13, textbox14, end;
 
 
 
@@ -260,6 +260,11 @@ function setup() {
 	textbox14.image = 'assets/textbox14.png';
 	textbox14.image.scale = 2;
 
+	end = new Sprite();
+	end.collider = 'none';
+	end.x = 750;
+	end.y = 300;
+	end.image = 'assets/end.png';
 
 }
 
@@ -287,6 +292,7 @@ function draw() {
 			textbox12.visible = false;
 			textbox13.visible = false;
 			textbox14.visible = false;
+			end.visible = false;
 			
 
 			text("Press Space to Start", 100, 100);
@@ -1140,8 +1146,9 @@ function draw() {
 
 			background('#ecf7ba');
 
-			text("15 back at home", 100, 100);
-			text("I don't want to walk outside anymore...", 300, 400, 25);
+			
+			text("I don't want to walk outside anymore...", 1000, 350, 25);
+			textSize(40);
 			mirror.visible = false;
 			phone.visible = false;
 			tanktop.visible = false;
@@ -1159,6 +1166,7 @@ function draw() {
 			house.visible = false;
 			facecaught.visible = false;
 			textbox14.visible = false;
+			end.visible = true;
 
 			break;
 		//2nd time you choose the sweatshirt which leads to mustang
